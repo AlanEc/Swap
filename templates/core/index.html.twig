@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ parent() }} - {{ controller_name }}{% endblock %}
+
+{% block body %}
+	<div class="flexslider">
+		<ul class="slides">
+			<li>
+				<img src="{{asset('bundles/swapplatform/images/imageSlider1.jpg') }}">
+			</li>
+			<li>
+				<img src="{{asset('bundles/swapplatform/images/imageSlider3.jpg') }}">
+			</li>
+			<li>
+				<img src="{{asset('bundles/swapplatform/images/imageSlider4.jpg') }}">
+			</li>
+		</ul>
+	</div>
+
+	<div class="container">
+	  <div class="row">
+	    <div class="col-xs-offset-1 col-xs-10">
+	      <div class="panel panel-default">
+	        <div class="panel-body shadow">
+	          <h1 class="titreArticleAccueil"> <span class="glyphicon glyphicon-refresh icone"></span> <br /> <br />
+	            {{ 'core.index.title_concept1'|trans }}
+	          </h1>
+	          <article class="articleAccueil">
+	            {{ 'core.index.block_concept1'|trans }}
+	          </article>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-offset-1 col-xs-10">
+	      <div class="panel panel-default">
+	      <div class="panel-body shadow">
+	        <h1 class="titreArticleAccueil">
+	        <span class="glyphicon glyphicon-globe icone"></span> <br /> <br />{{ 'core.index.title_concept2'|trans }}</h1>
+	        <article class="articleAccueil">
+	          {{ 'core.index.block_concept2'|trans }}
+	        </h2>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-offset-1 col-xs-10">
+	      <div class="panel panel-default">
+	        <div class="panel-body shadow">
+	          <h1 class="titreArticleAccueil"><span class="glyphicon glyphicon-ok icone"></span> <br /> <br />{{ 'core.index.title_concept3'|trans }}</h1>
+	          <aricle class="articleAccueil">
+	          {{ 'core.index.block_concept4'|trans }}
+	          </h2>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-offset-1 col-xs-10">
+	      <div class="panel panel-default">
+	        <div class="panel-body shadow">
+	        <h1 class="titreArticleAccueil"><span class="glyphicon glyphicon-star icone"></span> <br /> <br />{{ 'core.index.title_concept4'|trans }}</h1>
+	        <article class="articleAccueil">
+	        {{ 'core.index.block_concept4'|trans }}
+	        </h2>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}
