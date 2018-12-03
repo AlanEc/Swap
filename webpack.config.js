@@ -23,9 +23,11 @@ Encore
     //.addEntry('page2', './assets/js/page2.js')
 
     .autoProvidejQuery()
+    .autoProvideVariables({ Popper: ['popper.js', 'default'] })
+
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
-    .enableSingleRuntimeChunk()
+    //.enableSingleRuntimeChunk()
 
     /*
      * FEATURE CONFIG

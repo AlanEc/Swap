@@ -37,6 +37,25 @@ class UserFixture extends BaseFixture
     		$manager->persist($user);
     	}
 
+        for ($i = 0; $i < 3; $i++) {
+            $user = new User();
+            $user->setEmail(sprintf('admin%d@example.com', $i));
+            $user->setFirstName($this->faker->firstName);
+            $user->setLastName($this->faker->lastName);
+            $user->setPhone($this->faker->phoneNumber);
+            $user->setPassword($this->passwordEncoder->encodePassword(
+                $user,
+                'engage'
+            ));
+            $user->setRoles(['ROLE_ADMIN']);
+            $user->setAccount(0);
+            $user->setDisabled(0);
+            $user->setCreatedAt(new \DateTime());
+            $user->setUptadedAt(new \DateTime());
+
+            $manager->persist($user);
+        }
+
         $manager->flush();
     }
 }
