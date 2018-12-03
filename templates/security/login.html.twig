@@ -2,35 +2,54 @@
 
 {% block title %}Log in!{% endblock %}
 
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/login.css') }}" />
 {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="wrapper">
+            <form method="post" class="form-signin">
+                <h3><img class="dumbbell" src="{{ asset('build/static/dumbbell.png') }}">Login! Start Lifting!</h3>
+                <div class="js-recommended-login">
+                    <a href="#" class="js-show-login">Don't know the login?</a>
+                </div>
+                <hr class="colorgraph" />
+
+                <br/>
+
+                {% if error %}
+                    <div class="alert alert-block alert-danger">{{ error.messageKey|trans }}</div>
+                {% endif %}
+
+                <input type="email"
+                       class="form-control js-login-field-username"
+                       id="inputEmail"
+                       name="email"
+                       value="{{ last_username }}"
+                       required="required"
+                       placeholder="{{ 'security.login.username'|trans }}"
+                />
+                <input type="password"
+                       class="form-control"
+                       id="inputPassword"
+                       name="password"
+                       required="required"
+                       placeholder="{{ 'security.login.password'|trans }}"
+                />
+
+                <input type="checkbox" name="_remember_me" checked style="display: none;" />
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+
