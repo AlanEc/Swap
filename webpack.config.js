@@ -5,7 +5,7 @@ Encore
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
     .setPublicPath('/build')
-    .autoProvidejQuery()
+
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
@@ -22,6 +22,7 @@ Encore
     .addEntry('app', './public/assets/js/app.js')
     //.addEntry('page2', './assets/js/page2.js')
 
+    .autoProvidejQuery()
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
