@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}Manage Account!{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
 {% block body %}
-    <div class="container">
+    <div id="containerDashboard">
     <div class="row">
     <div class="col-md-3 col-md-offset-1">
         <div class="panel-body shadow Compte">
@@ -228,4 +231,7 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/dashboard.js') }}"></script>
 {% endblock %}

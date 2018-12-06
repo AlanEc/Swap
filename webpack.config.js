@@ -22,7 +22,7 @@ Encore
     .addEntry('login', './assets/js/login.js')
     .addEntry('app', './assets/js/app.js')
     .addEntry('home', './assets/js/home.js')
-    .addEntry('home', './assets/js/dashboard.js')
+    .addEntry('dashboard', './assets/js/dashboard.js')
 
     .autoProvidejQuery()
     .addPlugin(new CopyWebpackPlugin([
