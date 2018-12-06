@@ -10,9 +10,9 @@
     <div class="container">
         <div class="wrapper">
             <form method="post" class="form-signin">
-                <h3><img class="dumbbell" src="{{ asset('build/static/dumbbell.png') }}">Login! Start Lifting!</h3>
+                <h3>{{ 'security.login.title'|trans }}</h3>
                 <div class="js-recommended-login">
-                    <a href="#" class="js-show-login">Don't know the login?</a>
+                    <a href="#" class="js-show-login">{{ 'security.login.forgetPassword'|trans }}</a>
                 </div>
                 <hr class="colorgraph" />
 
@@ -44,7 +44,7 @@
                 >
 
                 <button type="submit" class="btn btn-primary btn-lg btn-block">
-                    Login
+                    {{ 'security.login.btn'|trans }}
                 </button>
             </form>
         </div>

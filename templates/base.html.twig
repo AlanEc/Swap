@@ -23,23 +23,23 @@
                        href="{{ path('core_home') }}"
                        data-toggle="tooltip"
                        data-placement="bottom"
-                       title="">{{ 'liftable_thing.cat'|trans }}</a>
+                       title="">{{ 'navbar.brand'|trans }}</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <div id="icon">
                         <ul class="nav navbar-nav navbar-right">
                             <li class=""><a href=""> <span class="glyphicon glyphicon-envelope fa-lg"></span></a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-user fa-lg"></span> Mon compte</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-user fa-lg"></span>{{ 'navbar.account'|trans }}</a></li>
                             <li class="separation">|</li>
-                            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                            <li><a href="{{ path('app_logout') }}">{{ 'navbar.signout'|trans }}</a></li>
                         </ul>
                     </div>
                     {% else %}
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a href="{{ path('app_login') }}">
-                                    Register
+                                    {{ 'navbar.signin'|trans }}
                                 </a>
                             </li>
                         </ul>

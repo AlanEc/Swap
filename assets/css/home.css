@@ -6,7 +6,7 @@
     font-size: 255%;
 }
 
-h1 {
+.titleArticle {
     text-align: center !important;
     color: #44A1B8 !important;
     font-size: 20px !important;
@@ -22,13 +22,10 @@ h1 {
     font-size: 120%;
 }
 
-.articleAccueil{
-    font-family: 'Helvetica', sans-serif;
-    color: #777;
-}
-
-article {
+.article {
     margin-top: 20px;
+    ont-family: 'Helvetica', sans-serif;
+    color: #777;
 }
 
 body {

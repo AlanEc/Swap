@@ -33,3 +33,17 @@ core:
     title_concept2: COMMENT CA MARCHE ?
     title_concept3: LE SYSTEME DE POINT
     title_concept4: LE SYSTEME DE POINT
+
+navbar:
+    account: Mon compte
+    signin: Connexion
+    signout: Deconnexion
+    brand: SwapTravel
+
+security:
+    login:
+        title: Se connecter !
+        forgetPassword: Vous avez oublié votre mot de passe?
+        password: Mot de passe
+        username: Nom d'utilisateur
+        btn: Se connecter
