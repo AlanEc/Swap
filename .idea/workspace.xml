@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c82cbff3-b319-4324-b336-87d3451917ff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/core/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/core/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/core/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/core/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,92 +15,7 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-              <folding>
-                <element signature="e#1#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/css/home.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/css/dashboard.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="19" selection-start-column="19" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/core/dashboard.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="959">
-              <caret line="236" selection-start-line="236" selection-end-line="236" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/dashboard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/core/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -134,6 +44,8 @@
       <find>home</find>
       <find>panel-collapsed</find>
       <find>dashboard</find>
+      <find>Comp</find>
+      <find>c</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -169,12 +81,12 @@
         <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
         <option value="$PROJECT_DIR$/translations/messages.fr.yml" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/assets/css/dashboard.css" />
         <option value="$PROJECT_DIR$/assets/js/home.js" />
-        <option value="$PROJECT_DIR$/templates/core/dashboard.html.twig" />
         <option value="$PROJECT_DIR$/assets/js/app.js" />
         <option value="$PROJECT_DIR$/assets/js/dashboard.js" />
         <option value="$PROJECT_DIR$/templates/core/index.html.twig" />
+        <option value="$PROJECT_DIR$/assets/css/dashboard.css" />
+        <option value="$PROJECT_DIR$/templates/core/dashboard.html.twig" />
       </list>
     </option>
   </component>
@@ -303,47 +215,19 @@
             <path>
               <item name="swap" type="b2602c69:ProjectViewProjectNode" />
               <item name="swap" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="swap" type="b2602c69:ProjectViewProjectNode" />
               <item name="swap" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="DataFixtures" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="swap" type="b2602c69:ProjectViewProjectNode" />
               <item name="swap" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="swap" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="swap" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="swap" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="swap" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="swap" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="swap" type="b2602c69:ProjectViewProjectNode" />
@@ -393,12 +277,12 @@
       <option name="presentableId" value="Default" />
       <updated>1543593449234</updated>
       <workItem from="1543593463949" duration="19786000" />
-      <workItem from="1543823187172" duration="53369000" />
+      <workItem from="1543823187172" duration="55808000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73155000" />
+    <option name="totallyTimeSpent" value="75594000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -451,9 +335,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/BaseFixture.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -490,21 +371,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/build/app.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-478" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/UserFixture.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
-          <folding>
-            <element signature="e#36#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
@@ -574,9 +440,6 @@
           <caret line="46" column="1" lean-forward="true" selection-end-line="56" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/framework.yaml">
       <provider selected="true" editor-type-id="text-editor">
@@ -670,38 +533,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/home.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/core/dashboard.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="959">
-          <caret line="236" selection-start-line="236" selection-end-line="236" />
         </state>
       </provider>
     </entry>
@@ -712,10 +547,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/core/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/core/dashboard.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/dashboard.css">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="49" column="29" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
+          <caret selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -729,17 +606,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/dashboard.js">
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="272">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/core/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/BaseFixture.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/UserFixture.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+        <state relative-caret-position="212">
+          <caret line="45" column="70" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
+          <folding>
+            <element signature="e#36#56#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
