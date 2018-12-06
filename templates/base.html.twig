@@ -23,33 +23,18 @@
                        href="{{ path('core_home') }}"
                        data-toggle="tooltip"
                        data-placement="bottom"
-                       title="DO IT! LIFT STUFF!!!">Lift Stuff</a>
+                       title="">{{ 'liftable_thing.cat'|trans }}</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div id="icon">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="drop-down" data-toggle="tooltip" data-placement="left" title="Welcome back {{ app.user.firstName }}">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <span class="fa fa-user"></span>
-                                    <strong>{{ app.user.username }}</strong>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ path('app_login') }}">
-                                            Lift Stuff
-                                            <span class="mini-dumbbell"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('app_logout') }}">
-                                            <span class="fa fa-sign-out"></span>
-                                            Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                            <li class=""><a href=""> <span class="glyphicon glyphicon-envelope fa-lg"></span></a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-user fa-lg"></span> Mon compte</a></li>
+                            <li class="separation">|</li>
+                            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                         </ul>
+                    </div>
                     {% else %}
                         <ul class="nav navbar-nav navbar-right">
                             <li>

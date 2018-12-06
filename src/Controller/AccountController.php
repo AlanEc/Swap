@@ -13,7 +13,7 @@ class AccountController extends AbstractController
     */
     public function index()
     {
-        return $this->render('core/account.html.twig', [
+        return $this->render('core/dashboard.html.twig', [
         'controller_name' => 'AccountController',
         ]);
     }

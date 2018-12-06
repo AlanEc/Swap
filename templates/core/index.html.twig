@@ -2,23 +2,26 @@
 
 
 {% block title %}{{ parent() }} - {{ controller_name }}{% endblock %}
+{% block stylesheets %}
+	<link href="{{ asset('build/home.css') }}" rel="stylesheet" />
+{% endblock %}
 
 {% block body %}
 	<div class="flexslider">
 		<ul class="slides">
 			<li>
-				<img src="{{asset('bundles/swapplatform/images/imageSlider1.jpg') }}">
+				<img src="{{asset('build/static/imageSlider1.jpg') }}">
 			</li>
 			<li>
-				<img src="{{asset('bundles/swapplatform/images/imageSlider3.jpg') }}">
+				<img src="{{asset('build/static/imageSlider3.jpg') }}">
 			</li>
 			<li>
-				<img src="{{asset('bundles/swapplatform/images/imageSlider4.jpg') }}">
+				<img src="{{asset('build/static/imageSlider4.jpg') }}">
 			</li>
 		</ul>
 	</div>
 
-	<div class="container">
+	<div class="containerHomePage">
 	  <div class="row">
 	    <div class="col-xs-offset-1 col-xs-10">
 	      <div class="panel panel-default">
@@ -71,4 +74,7 @@
 	    </div>
 	  </div>
 	</div>
+    {% block javascripts %}
+		<script src="{{ asset('build/home.js') }}"></script>
+    {% endblock %}
 {% endblock %}

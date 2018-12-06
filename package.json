@@ -2,6 +2,8 @@
     "devDependencies": {
         "@symfony/webpack-encore": "^0.22.1",
         "bootstrap": "3",
+        "copy-webpack-plugin": "^4.6.0",
+        "flexslider": "^2.7.1",
         "jquery": "^3.3.1",
         "popper.js": "^1.14.6",
         "webpack-notifier": "^1.7.0"

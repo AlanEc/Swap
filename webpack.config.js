@@ -1,4 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
     // directory where compiled assets will be stored
@@ -18,12 +19,18 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .addEntry('login', './public/assets/js/login.js')
-    .addEntry('app', './public/assets/js/app.js')
-    //.addEntry('page2', './assets/js/page2.js')
+    .addEntry('login', './assets/js/login.js')
+    .addEntry('app', './assets/js/app.js')
+    .addEntry('home', './assets/js/home.js')
+    .addEntry('home', './assets/js/dashboard.js')
 
     .autoProvidejQuery()
+    .addPlugin(new CopyWebpackPlugin([
+        { from: './assets/static', to: 'static'}
+    ]))
     .autoProvideVariables({ Popper: ['popper.js', 'default'] })
+    .cleanupOutputBeforeBuild()
+    //.enableVersioning()
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -36,13 +43,12 @@ Encore
      * list of features, see:
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
-    // .cleanupOutputBeforeBuild()
+
     Encore.enableBuildNotifications(true, (options) => {
         options.alwaysNotify = true;
     });
     // .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
-    // .enableVersioning(Encore.isProduction())
 
     // enables Sass/SCSS support
     //.enableSassLoader()

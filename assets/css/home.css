@@ -1,0 +1,58 @@
+.containerHomePage {
+    margin-top: 1000px;
+}
+
+.icone {
+    font-size: 255%;
+}
+
+h1 {
+    text-align: center !important;
+    color: #44A1B8 !important;
+    font-size: 20px !important;
+}
+
+.panel-body shadow {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+}
+
+.panel-body {
+    background: #f2f2f2;
+    text-align: justify;
+    font-size: 120%;
+}
+
+.articleAccueil{
+    font-family: 'Helvetica', sans-serif;
+    color: #777;
+}
+
+article {
+    margin-top: 20px;
+}
+
+body {
+    background-color: #F3F3F3;
+}
+
+.shadow {
+    box-shadow:  8px 8px 12px #aaa;
+}
+
+/*Caroussel*/
+
+.flexslider ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+@media screen and (max-width: 780px)
+{
+    .flexslider {
+        display: none;
+    }
+
+    .containerHomePage {
+        margin-top: 100px;
+    }
+}
