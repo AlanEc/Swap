@@ -41,6 +41,30 @@ class Booking
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SwapService", inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $swapService;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\BookingState", inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $bookingSate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\BookingType", inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $bookingType;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +126,54 @@ class Booking
     public function setUpdatedAt(string $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getSwapService(): ?SwapService
+    {
+        return $this->swapService;
+    }
+
+    public function setSwapService(?SwapService $swapService): self
+    {
+        $this->swapService = $swapService;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getBookingSate(): ?BookingState
+    {
+        return $this->bookingSate;
+    }
+
+    public function setBookingSate(?BookingState $bookingSate): self
+    {
+        $this->bookingSate = $bookingSate;
+
+        return $this;
+    }
+
+    public function getBookingType(): ?BookingType
+    {
+        return $this->bookingType;
+    }
+
+    public function setBookingType(?BookingType $bookingType): self
+    {
+        $this->bookingType = $bookingType;
 
         return $this;
     }
