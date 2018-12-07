@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SwapService
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -42,12 +43,12 @@ class SwapService
     private $adress_1;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true))
      */
     private $adress_2;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true))
      */
     private $adress_3;
 
@@ -77,6 +78,12 @@ class SwapService
     private $disabled;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="swapServices", cascade={"persist"} )
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -86,6 +93,13 @@ class SwapService
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SwapServiceType", inversedBy="swapServices",  cascade={"persist"} ))
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $swapServiceType;
+    
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -255,6 +269,30 @@ class SwapService
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSwapServiceType(): ?SwapServiceType
+    {
+        return $this->swapServiceType;
+    }
+
+    public function setSwapServiceType(?SwapServiceType $swapServiceType): self
+    {
+        $this->swapServiceType = $swapServiceType;
 
         return $this;
     }

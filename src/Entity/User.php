@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -10,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -62,11 +65,21 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SwapService", mappedBy="user")
+     */
+    private $swapServices;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $uptaded_at;
+    private $updated_at;
+
+    public function __construct()
+    {
+        $this->swapServices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -218,14 +231,45 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getUptadedAt(): ?\DateTimeInterface
+    /**
+     * @return Collection|SwapService[]
+     */
+    public function getSwapServices(): Collection
     {
-        return $this->uptaded_at;
+        return $this->swapServices;
     }
 
-    public function setUptadedAt(\DateTimeInterface $uptaded_at): self
+    public function addSwapService(SwapService $swapService): self
     {
-        $this->uptaded_at = $uptaded_at;
+        if (!$this->swapServices->contains($swapService)) {
+            $this->swapServices[] = $swapService;
+            $swapService->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSwapService(SwapService $swapService): self
+    {
+        if ($this->swapServices->contains($swapService)) {
+            $this->swapServices->removeElement($swapService);
+            // set the owning side to null (unless already changed)
+            if ($swapService->getUser() === $this) {
+                $swapService->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

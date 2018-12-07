@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\SwapService;
+use App\Entity\SwapServiceType;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -32,9 +34,28 @@ class UserFixture extends BaseFixture
     		$user->setAccount(0);
     		$user->setDisabled(0);
     		$user->setCreatedAt(new \DateTime());
-    		$user->setUptadedAt(new \DateTime());
+    		$user->setUpdatedAt(new \DateTime());
 
-    		$manager->persist($user);
+            $repository = $manager->getRepository(SwapServiceType::class);
+            $swapServiceType = $repository->findOneBy(['label' => 'Hebergement']);
+
+            $swapService = new SwapService();
+            $swapService->setQuantity(1);
+            $swapService->setPeopleQuantity(1);
+            $swapService->setLatitude(47.218371);
+            $swapService->setLongitude(-1.553621);
+            $swapService->setAdress1('26 rue Lakanal');
+            $swapService->setCity('Nantes');
+            $swapService->setPostalCode(44000);
+            $swapService->setRegion('Pays de la loire');
+            $swapService->setCountry('France');
+            $swapService->setUser($user);
+            $swapService->setSwapServiceType($swapServiceType);
+            $swapService->setCreatedAt(new \DateTime());
+            $swapService->setUpdatedAt(new \DateTime());
+            $swapService->setDisabled(0);
+
+    		$manager->persist($swapService);
     	}
 
         for ($i = 0; $i < 3; $i++) {
@@ -51,8 +72,8 @@ class UserFixture extends BaseFixture
             $user->setAccount(0);
             $user->setDisabled(0);
             $user->setCreatedAt(new \DateTime());
-            $user->setUptadedAt(new \DateTime());
-
+            $user->setUpdatedAt(new \DateTime());
+            $user->setDisabled(0);
             $manager->persist($user);
         }
 

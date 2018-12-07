@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,17 @@ class SwapServiceType
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SwapService", mappedBy="swapServiceType")
+     */
+    private $swapServices;
+
+
+    public function __construct()
+    {
+        $this->swapServices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +115,37 @@ class SwapServiceType
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SwapService[]
+     */
+    public function getSwapServices(): Collection
+    {
+        return $this->swapServices;
+    }
+
+    public function addSwapService(SwapService $swapService): self
+    {
+        if (!$this->swapServices->contains($swapService)) {
+            $this->swapServices[] = $swapService;
+            $swapService->setSwapServiceType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSwapService(SwapService $swapService): self
+    {
+        if ($this->swapServices->contains($swapService)) {
+            $this->swapServices->removeElement($swapService);
+            // set the owning side to null (unless already changed)
+            if ($swapService->getSwapServiceType() === $this) {
+                $swapService->setSwapServiceType(null);
+            }
+        }
 
         return $this;
     }
