@@ -86,11 +86,23 @@ class User implements UserInterface
      */
     private $bookingComments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="userSender")
+     */
+    private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="userSender")
+     */
+    private $transactions;
+
     public function __construct()
     {
         $this->swapServices = new ArrayCollection();
         $this->bookings = new ArrayCollection();
         $this->bookingComments = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+        $this->transactions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -342,6 +354,68 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($bookingComment->getUserSender() === $this) {
                 $bookingComment->setUserSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setUserSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->contains($message)) {
+            $this->messages->removeElement($message);
+            // set the owning side to null (unless already changed)
+            if ($message->getUserSender() === $this) {
+                $message->setUserSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Transaction[]
+     */
+    public function getTransactions(): Collection
+    {
+        return $this->transactions;
+    }
+
+    public function addTransaction(Transaction $transaction): self
+    {
+        if (!$this->transactions->contains($transaction)) {
+            $this->transactions[] = $transaction;
+            $transaction->setUserSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransaction(Transaction $transaction): self
+    {
+        if ($this->transactions->contains($transaction)) {
+            $this->transactions->removeElement($transaction);
+            // set the owning side to null (unless already changed)
+            if ($transaction->getUserSender() === $this) {
+                $transaction->setUserSender(null);
             }
         }
 

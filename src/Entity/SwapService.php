@@ -106,9 +106,15 @@ class SwapService
      */
     private $bookings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="swapService")
+     */
+    private $transactions;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->transactions = new ArrayCollection();
     }
     
     
@@ -334,6 +340,37 @@ class SwapService
             // set the owning side to null (unless already changed)
             if ($booking->getSwapService() === $this) {
                 $booking->setSwapService(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Transaction[]
+     */
+    public function getTransactions(): Collection
+    {
+        return $this->transactions;
+    }
+
+    public function addTransaction(Transaction $transaction): self
+    {
+        if (!$this->transactions->contains($transaction)) {
+            $this->transactions[] = $transaction;
+            $transaction->setSwapService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransaction(Transaction $transaction): self
+    {
+        if ($this->transactions->contains($transaction)) {
+            $this->transactions->removeElement($transaction);
+            // set the owning side to null (unless already changed)
+            if ($transaction->getSwapService() === $this) {
+                $transaction->setSwapService(null);
             }
         }
 

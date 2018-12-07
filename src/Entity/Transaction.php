@@ -31,6 +31,24 @@ class Transaction
      */
     private $date_transaction_end;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="transactions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userSender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="transactions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userReceiver;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SwapService", inversedBy="transactions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $swapService;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +86,42 @@ class Transaction
     public function setDateTransactionEnd(?\DateTimeInterface $date_transaction_end): self
     {
         $this->date_transaction_end = $date_transaction_end;
+
+        return $this;
+    }
+
+    public function getUserSender(): ?User
+    {
+        return $this->userSender;
+    }
+
+    public function setUserSender(?User $userSender): self
+    {
+        $this->userSender = $userSender;
+
+        return $this;
+    }
+
+    public function getUserReceiver(): ?User
+    {
+        return $this->userReceiver;
+    }
+
+    public function setUserReceiver(?User $userReceiver): self
+    {
+        $this->userReceiver = $userReceiver;
+
+        return $this;
+    }
+
+    public function getSwapService(): ?SwapService
+    {
+        return $this->swapService;
+    }
+
+    public function setSwapService(?SwapService $swapService): self
+    {
+        $this->swapService = $swapService;
 
         return $this;
     }

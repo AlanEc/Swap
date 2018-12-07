@@ -36,6 +36,18 @@ class Message
      */
     private $created_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userSender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userReceiver;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +97,30 @@ class Message
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUserSender(): ?User
+    {
+        return $this->userSender;
+    }
+
+    public function setUserSender(?User $userSender): self
+    {
+        $this->userSender = $userSender;
+
+        return $this;
+    }
+
+    public function getUserReceiver(): ?User
+    {
+        return $this->userReceiver;
+    }
+
+    public function setUserReceiver(?User $userReceiver): self
+    {
+        $this->userReceiver = $userReceiver;
 
         return $this;
     }
