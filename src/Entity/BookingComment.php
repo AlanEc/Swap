@@ -41,6 +41,24 @@ class BookingComment
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Booking", inversedBy="bookingComments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $booking;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookingComments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userSender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookingComments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userReceiver;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +120,42 @@ class BookingComment
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(?Booking $booking): self
+    {
+        $this->booking = $booking;
+
+        return $this;
+    }
+
+    public function getUserSender(): ?User
+    {
+        return $this->userSender;
+    }
+
+    public function setUserSender(?User $userSender): self
+    {
+        $this->userSender = $userSender;
+
+        return $this;
+    }
+
+    public function getUserReceiver(): ?User
+    {
+        return $this->userReceiver;
+    }
+
+    public function setUserReceiver(?User $userReceiver): self
+    {
+        $this->userReceiver = $userReceiver;
 
         return $this;
     }

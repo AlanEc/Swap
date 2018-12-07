@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -64,6 +66,16 @@ class Booking
      * @ORM\JoinColumn(nullable=false)
      */
     private $bookingType;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\BookingComment", mappedBy="booking")
+     */
+    private $bookingComments;
+
+    public function __construct()
+    {
+        $this->bookingComments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -174,6 +186,37 @@ class Booking
     public function setBookingType(?BookingType $bookingType): self
     {
         $this->bookingType = $bookingType;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|BookingComment[]
+     */
+    public function getBookingComments(): Collection
+    {
+        return $this->bookingComments;
+    }
+
+    public function addBookingComment(BookingComment $bookingComment): self
+    {
+        if (!$this->bookingComments->contains($bookingComment)) {
+            $this->bookingComments[] = $bookingComment;
+            $bookingComment->setBooking($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookingComment(BookingComment $bookingComment): self
+    {
+        if ($this->bookingComments->contains($bookingComment)) {
+            $this->bookingComments->removeElement($bookingComment);
+            // set the owning side to null (unless already changed)
+            if ($bookingComment->getBooking() === $this) {
+                $bookingComment->setBooking(null);
+            }
+        }
 
         return $this;
     }

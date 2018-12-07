@@ -81,10 +81,16 @@ class User implements UserInterface
      */
     private $bookings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\BookingComment", mappedBy="userSender")
+     */
+    private $bookingComments;
+
     public function __construct()
     {
         $this->swapServices = new ArrayCollection();
         $this->bookings = new ArrayCollection();
+        $this->bookingComments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -305,6 +311,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($booking->getUser() === $this) {
                 $booking->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|BookingComment[]
+     */
+    public function getBookingComments(): Collection
+    {
+        return $this->bookingComments;
+    }
+
+    public function addBookingComment(BookingComment $bookingComment): self
+    {
+        if (!$this->bookingComments->contains($bookingComment)) {
+            $this->bookingComments[] = $bookingComment;
+            $bookingComment->setUserSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookingComment(BookingComment $bookingComment): self
+    {
+        if ($this->bookingComments->contains($bookingComment)) {
+            $this->bookingComments->removeElement($bookingComment);
+            // set the owning side to null (unless already changed)
+            if ($bookingComment->getUserSender() === $this) {
+                $bookingComment->setUserSender(null);
             }
         }
 
