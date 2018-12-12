@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}Profile{% endblock %}
+{% block body %}
+    {{ form_start(userForm) }}
+    	{{ form_widget(userForm) }}
+
+    	<button type="submit" class="btn btn-primary">Create !</button>
+    {{ form_end(userForm) }}
+{% endblock %}
