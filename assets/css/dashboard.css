@@ -43,7 +43,7 @@ td {
     box-shadow:  8px 8px 12px #aaa !important;
 }
 
-.row {
+.row { 
     margin-top: 20px;
 }
 
@@ -54,5 +54,9 @@ div.panel-body.shadow.account {
 
 #boutonProfil {
     margin-top: 10px;
+}
+
+#table {
+    vertical-align: none !important;
 }
 

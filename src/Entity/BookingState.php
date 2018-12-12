@@ -39,7 +39,7 @@ class BookingState
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="bookingSate")
+     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="bookingState")
      */
     private $bookings;
 
@@ -113,7 +113,7 @@ class BookingState
     {
         if (!$this->bookings->contains($booking)) {
             $this->bookings[] = $booking;
-            $booking->setBookingSate($this);
+            $booking->setBookingState($this);
         }
 
         return $this;
@@ -124,8 +124,8 @@ class BookingState
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);
             // set the owning side to null (unless already changed)
-            if ($booking->getBookingSate() === $this) {
-                $booking->setBookingSate(null);
+            if ($booking->getBookingState() === $this) {
+                $booking->setBookingState(null);
             }
         }
 

@@ -17,6 +17,7 @@ class SwapServiceTypeFixtures extends Fixture
         $swapServiceType->setUpdatedAt(new \DateTime());
         $swapServiceType->setDisabled(0);
 
+        $this->addReference('swapServiceType-accommodation', $swapServiceType);
         $manager->persist($swapServiceType);
         $manager->flush();
     }

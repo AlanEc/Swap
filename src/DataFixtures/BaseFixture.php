@@ -1,23 +1,28 @@
-<?php 
+<?php
 
 namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 abstract class BaseFixture extends Fixture
-
 {
-	/** @var ObjectManager */
+    /** @var ObjectManager */
     private $manager;
     protected $faker;
 
-	abstract protected function loadData(ObjectManager $manager);
+    abstract protected function loadData(ObjectManager $manager);
 
-	public function load(ObjectManager $manager)
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
-    	$this->faker = Factory::create();
-    	$this->loadData($manager);
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
+    public function load(ObjectManager $manager)
+    {
+        $this->faker = Factory::create();
+        $this->loadData($manager);
     }
 
     protected function createMany(string $className, int $count, callable $factory)

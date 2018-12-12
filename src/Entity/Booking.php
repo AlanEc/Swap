@@ -39,7 +39,7 @@ class Booking
     private $created_at;
 
     /**
-     * @ORM\Column(type="datetime", length=255)
+     * @ORM\Column(type="datetime")
      */
     private $updated_at;
 
@@ -50,7 +50,7 @@ class Booking
     private $swapService;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookings")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookings", cascade={"persist"} )
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -59,7 +59,7 @@ class Booking
      * @ORM\ManyToOne(targetEntity="App\Entity\BookingState", inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $bookingSate;
+    private $bookingState;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\BookingType", inversedBy="bookings")
@@ -130,12 +130,12 @@ class Booking
         return $this;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(string $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
 
@@ -166,14 +166,14 @@ class Booking
         return $this;
     }
 
-    public function getBookingSate(): ?BookingState
+    public function getBookingState(): ?BookingState
     {
-        return $this->bookingSate;
+        return $this->bookingState;
     }
 
-    public function setBookingSate(?BookingState $bookingSate): self
+    public function setBookingState(?BookingState $bookingState): self
     {
-        $this->bookingSate = $bookingSate;
+        $this->bookingState = $bookingState;
 
         return $this;
     }

@@ -4,8 +4,10 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use App\Entity\BookingState;
 
-class BookingStateFixture extends Fixture
+class BookingStateFixture extends Fixture  implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -39,8 +41,15 @@ class BookingStateFixture extends Fixture
         $bookingState4->setUpdatedAt(new \DateTime());
         $bookingState4->setDisabled(0);
 
+        $this->addReference('booking-waiting', $bookingState4);
+
         $manager->persist($bookingState4);
 
-        $manager->flush()
+        $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 1; // number in which order to load fixtures
     }
 }

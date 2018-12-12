@@ -5,22 +5,57 @@ namespace App\DataFixtures;
 use App\Entity\SwapService;
 use App\Entity\SwapServiceType;
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Faker\Factory;
 
 class UserFixture extends BaseFixture
 {
-	protected $faker;
-
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $this->passwordEncoder = $passwordEncoder;
-    }
-
     protected function loadData(ObjectManager $manager)
     {
+        /* User Booking */
+        $this->faker = Factory::create();
+        $user = new User();
+        $user->setEmail('admin@example.com');
+        $user->setFirstName($this->faker->firstName);
+        $user->setLastName($this->faker->lastName);
+        $user->setPhone($this->faker->phoneNumber);
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            'engage'
+        ));
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setAccount(0);
+        $user->setDisabled(0);
+        $user->setCreatedAt(new \DateTime());
+        $user->setUpdatedAt(new \DateTime());
+        $user->setDisabled(0);
+
+        $this->addReference('booking-user', $user);
+
+        $manager->persist($user);
+
+        /* User SwapService */
+        $user = new User();
+        $user->setEmail('admin5@example.com');
+        $user->setFirstName($this->faker->firstName);
+        $user->setLastName($this->faker->lastName);
+        $user->setPhone($this->faker->phoneNumber);
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            'engage'
+        ));
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setAccount(0);
+        $user->setDisabled(0);
+        $user->setCreatedAt(new \DateTime());
+        $user->setUpdatedAt(new \DateTime());
+        $user->setDisabled(0);
+
+        $this->addReference('SwapService-user', $user);
+
+        $manager->persist($user);
+
+        /*Many users */
         for ($i = 0; $i < 20; $i++) {
     		$user = new User();
     		$user->setEmail(sprintf('test%d@example.com', $i));
@@ -58,6 +93,7 @@ class UserFixture extends BaseFixture
     		$manager->persist($swapService);
     	}
 
+        /* 3 Admin Users */
         for ($i = 0; $i < 3; $i++) {
             $user = new User();
             $user->setEmail(sprintf('admin%d@example.com', $i));
@@ -76,6 +112,25 @@ class UserFixture extends BaseFixture
             $user->setDisabled(0);
             $manager->persist($user);
         }
+
+        $user = new User();
+        $user->setEmail(sprintf('user0@example.com', $i));
+        $user->setFirstName($this->faker->firstName);
+        $user->setLastName($this->faker->lastName);
+        $user->setPhone($this->faker->phoneNumber);
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            'engage'
+        ));
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setAccount(0);
+        $user->setDisabled(0);
+        $user->setCreatedAt(new \DateTime());
+        $user->setUpdatedAt(new \DateTime());
+        $user->setDisabled(0);
+        $manager->persist($user);
+
+        $this->addReference('user0', $user);
 
         $manager->flush();
     }
