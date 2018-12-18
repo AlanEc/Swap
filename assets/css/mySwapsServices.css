@@ -1,0 +1,42 @@
+.mySwapsContainer {
+    margin-top: 75px;
+}
+
+
+/*My Swaps*/
+#mySwap:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.mySwaps {
+    color: #44a1b8;
+}
+
+#rowMySwaps {
+    margin-top: 0px;
+}
+
+.deletedSwap {
+    text-align: center;
+    color: #44a1b8;
+}
+
+.fontbig {
+    font-size: 200%;
+}
+
+h1 {
+    text-align: center !important;
+    color: #44A1B8 !important;
+    font-size: 20px !important;
+}
+
+div.panel-body.shadow.Compte {
+    background-color: white;
+    border-radius: 4px;
+}
+
+
+
+
+

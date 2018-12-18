@@ -1,0 +1,31 @@
+.profileContainer {
+    margin-top: 75px;
+}
+
+
+.ll {
+    border: 2px solid black;
+    height: 20px;
+}
+
+div.panel-body.shadow.Profile {
+    background-color: white;
+    border-radius: 4px;
+}
+
+.well {
+    border: none !important;
+    background-color: #F3F3F3 !important;
+}
+
+.well div {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.col-md-5 {
+    margin-left: 4.16666667% !important;
+}
+
+

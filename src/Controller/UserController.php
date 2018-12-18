@@ -5,21 +5,36 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use App\Form\UserFormType;
 
 class UserController extends AbstractController
 {
     /**
-     * @Route("/index", name="app_profile")
+     * @IsGranted("ROLE_USER")
+     * @Route("/profile", name="app_profile")
      */
-    public function index(TranslatorInterface $translator)
+    public function index(ObjectManager $em, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
+        $user = $this->getUser();
+        $form = $this->createForm(UserFormType::class);
 
-    	$form = $this->createForm(UserFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'User updated!');
+        }
 
         return $this->render('core/user/profile.html.twig', [
             'userForm' => $form->createView(),
+            'user' => $user,
         ]);
     }
 

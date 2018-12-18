@@ -28,25 +28,6 @@ td {
     font-size: 15px;
 }
 
-.panel-body shadow {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
-}
-
-.panel-body {
-    background: #f2f2f2;
-    text-align: justify;
-    font-size: 120%;
-}
-
-
-.shadow {
-    box-shadow:  8px 8px 12px #aaa !important;
-}
-
-.row { 
-    margin-top: 20px;
-}
-
 div.panel-body.shadow.account {
     background-color: white;
     border-radius: 4px;

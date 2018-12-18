@@ -48,6 +48,11 @@
                 <!--/.navbar-collapse -->
             </div>
         </div>
+        {% for message in app.flashes('success') %}
+            <div id="flashMessage" class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
         {% block body %}{% endblock %}
         {% block javascripts %}
         {% endblock %}

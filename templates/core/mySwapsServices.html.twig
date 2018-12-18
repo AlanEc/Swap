@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Swaps{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/mySwapsServices.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+<div class="mySwapsContainer">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-1">
+            <div class="panel-body shadow Compte">
+                <img class="img-responsive" src="{{asset('build/static/silhouette.png') }}">
+                <p>{{ user.username }}</p>
+                <p>Ma swapBank :
+                    <a href="">
+                        <button id="boutonProfil" class="btn btn-primary text-center col-md-12">Modifier mon profil</button>
+                    </a>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="panel panel-default shadow">
+                <h1>Mes Swaps</h1>
+                {% for service in services %}
+                    <div  id="rowMySwaps" class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <a href="">
+                                <div id="mySwap" class="panel panel-default">
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-1 mySwaps">
+                                            <p> {{ service.adress1 }} </p>
+                                            <p> {{ service.swapServiceType.label }} </p>
+                                        </div>
+                                        <a href=" ">
+                                            <div class="col-md-2  deletedSwap ">
+                                                <span class="glyphicon glyphicon-remove fontbig hidden-xs"></span>
+                                                <br>
+                                                <p>Supprimer</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/mySwapsServices.js') }}"></script>
+{% endblock %}

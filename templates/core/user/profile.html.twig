@@ -1,9 +1,30 @@
 {% extends 'base.html.twig' %}
 {% block title %}Profile{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/profile.css') }}" rel="stylesheet" />
+{% endblock %}
 {% block body %}
-    {{ form_start(userForm) }}
-    	{{ form_widget(userForm) }}
+    <div class="profileContainer">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-3">
+                <div class="panel-body shadow Profile">
+                    <img class="img-responsive" src="{{asset('build/static/silhouette.png') }}">
+                    <a href="">
+                        <button id="boutonProfil" class="btn btn-primary text-center col-md-12">Modifier mon profil</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-5">
+                {{ form_start(userForm) }}
+                {{ form_widget(userForm) }}
 
-    	<button type="submit" class="btn btn-primary">Create !</button>
-    {{ form_end(userForm) }}
+                <button type="submit" class="btn btn-primary">Create !</button>
+                {{ form_end(userForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/profile.js') }}"></script>
 {% endblock %}

@@ -23,6 +23,8 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('home', './assets/js/home.js')
     .addEntry('dashboard', './assets/js/dashboard.js')
+    .addEntry('profile', './assets/js/profile.js')
+    .addEntry('mySwapsServices', './assets/js/mySwapsServices.js')
 
     .autoProvidejQuery()
     .addPlugin(new CopyWebpackPlugin([
