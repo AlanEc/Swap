@@ -11,6 +11,9 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\SwapService;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class SwapServiceController extends AbstractController
@@ -37,5 +40,22 @@ class SwapServiceController extends AbstractController
             'user' => $user,
             'services' => $user->getSwapServices(),
         ));
+    }
+
+    /**
+     * @Route("/ajax_search", name="swap_ajax_search")
+     */
+    public function ajax(Request $request)
+    {
+        $output[] = $_POST;
+
+        $listSwapsServices = $this->getDoctrine()
+            ->getRepository(SwapService::class)
+            ->swapsByCoord($output[0]);
+
+        foreach ($listSwapsServices as $swap) {
+            $aa[] = array('Latitude' => $swap->getLatitude(), 'Longitude' => $swap->getLongitude());
+        }
+        return new JsonResponse($aa);
     }
 }

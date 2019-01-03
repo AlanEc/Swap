@@ -19,6 +19,24 @@ class SwapServiceRepository extends ServiceEntityRepository
         parent::__construct($registry, SwapService::class);
     }
 
+    public function swapsByCoord($coord)
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        $qb
+            ->where('m.longitude BETWEEN :swlng AND :nelng')
+            ->setParameter('swlng', $coord['swlng'])
+            ->setParameter('nelng', $coord['nelng'])
+            ->andWhere('m.latitude BETWEEN :swlat AND :nelat')
+            ->setParameter('swlat', $coord['swlat'])
+            ->setParameter('nelat', $coord['nelat'])
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return SwapService[] Returns an array of SwapService objects
 //     */

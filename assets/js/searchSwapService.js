@@ -71,5 +71,61 @@ $(document).ready(function() {
             map.fitBounds(bounds);
         });
 
+        google.maps.event.addListener(map, 'idle', function() {
+            deleteMarkers();
+            var bounds = map.getBounds();
+            var swPoint = bounds.getSouthWest();
+            var nePoint = bounds.getNorthEast();
+
+            var swLat = swPoint.lat();
+            var swLng = swPoint.lng();
+            var neLat = nePoint.lat();
+            var neLng = nePoint.lng();
+
+            var dataJson = {
+                'swlat': swLat,
+                'swlng': swLng,
+                'nelat': neLat,
+                'nelng': neLng
+            };
+
+            var marker = [];
+
+            $.ajax({
+                url : 'ajax_search',
+                type : 'POST',
+                dataType: 'json',
+                data : dataJson,
+                success :function(data) {
+                    console.log(data);
+                    for ( var i=0; i<data.length; i++){
+                        marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(data[i]['Latitude'], data[i]['Longitude']),
+                            map: map
+                        });
+                        markers.push(marker);
+                    }
+                },
+            });
+        });
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
+        }
+
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkers() {
+            setMapOnAll(null);
+        }
+
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+            console.log(map);
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
 });
 
