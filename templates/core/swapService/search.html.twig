@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/searchSwapService.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <div id="mapContainer">
+        <div id="map"></div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKKFn2CuDFoSkzLG0PJf2nhTyk9sSNbBE&libraries=places&callback=initAutocomplete"
+             ></script>
+    <script src="{{ asset('build/searchSwapService.js') }}"></script>
+{% endblock %}
