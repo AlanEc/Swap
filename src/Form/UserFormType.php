@@ -19,7 +19,6 @@ class UserFormType extends AbstractType
         $builder
             ->add('email', null, array(
             'required'   => false,
-            'placeholder' => true,
             ))
             ->add('last_name')
             ->add('first_name')

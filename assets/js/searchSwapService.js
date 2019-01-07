@@ -5,7 +5,6 @@ require('../css/searchSwapService.css');
 
 $(document).ready(function() {
 
-        console.log("ll");
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -33.8688, lng: 151.2195},
             zoom: 13,
@@ -73,6 +72,10 @@ $(document).ready(function() {
 
         google.maps.event.addListener(map, 'idle', function() {
             deleteMarkers();
+            removeElement();
+
+            console.log('hey');
+
             var bounds = map.getBounds();
             var swPoint = bounds.getSouthWest();
             var nePoint = bounds.getNorthEast();
@@ -99,6 +102,7 @@ $(document).ready(function() {
                 success :function(data) {
                     console.log(data);
                     for ( var i=0; i<data.length; i++){
+                        $('#resultSearch').append('<div class="panel panel-default ' + i + ' "><b>Nom</b> : ' + data[i]['Latitude'] + '</div>');
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(data[i]['Latitude'], data[i]['Longitude']),
                             map: map
@@ -122,9 +126,17 @@ $(document).ready(function() {
 
         // Sets the map on all markers in the array.
         function setMapOnAll(map) {
-            console.log(map);
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(map);
+            }
+        }
+
+        function removeElement() {
+            // Removes an element from the document
+            var element = document.getElementsByClassName('panel');
+            var element1 = document.getElementById('resultSearch');
+            while (element1.firstChild) {
+                element1.removeChild(element1.firstChild);
             }
         }
 });

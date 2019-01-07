@@ -21,7 +21,7 @@ class UserController extends AbstractController
     public function index(ObjectManager $em, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = $this->getUser();
-        $form = $this->createForm(UserFormType::class);
+        $form = $this->createForm(UserFormType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
