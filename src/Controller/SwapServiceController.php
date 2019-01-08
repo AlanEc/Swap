@@ -54,7 +54,13 @@ class SwapServiceController extends AbstractController
             ->swapsByCoord($output[0]);
 
         foreach ($listSwapsServices as $swap) {
-            $swapsServicesArray[] = array('Latitude' => $swap->getLatitude(), 'Longitude' => $swap->getLongitude());
+            $swapsServicesArray[] = array('Latitude' => $swap->getLatitude(),
+                'Longitude' => $swap->getLongitude(),
+                'People_quantity' => $swap->getPeopleQuantity(),
+                'User' => $swap->getUser()->getUsername(),
+                'Id' => $swap->getId(),
+                'City' => $swap->getCity(),
+                'Category' => $swap->getSwapServiceType()->getLabel());
         }
         return new JsonResponse($swapsServicesArray);
     }
