@@ -21,6 +21,7 @@ body {
     height: 90%;
     width: 100%;
     margin-left: 55px;
+    margin-top: 35px;
 }
 
 #containerResults {
@@ -28,6 +29,12 @@ body {
     height: 90%;
     margin-top: 30px;
     width: 47%;
+}
+
+.panel {
+    padding-left: 15px;
+    padding-bottom: 15px;
+    margin-right: 45px;
 }
 
 @media screen and (max-width: 780px)

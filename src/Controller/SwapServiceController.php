@@ -19,6 +19,31 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class SwapServiceController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/add", name="swap_add")
+     */
+    public function addSwapAction(Request $request)
+    {
+        $swapService = new SwapService();
+        $form = $this->createForm(SwapServiceFormType::class, $swapService);
+
+        $form = $this->container->get('Swap_form.FormCreator');
+        $creationForm = $form->creation($formBuilder, $request, $service);
+
+        if ($formBuilder->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($service);
+            $em->flush();
+            return $this->redirectToRoute('swap_ajouter_service_details', array(
+                'id' => $service->getId()
+            )); }
+
+        return $this->render('SwapPlatformBundle:Service:ajouterSwap.html.twig', array(
+            'form' => $formBuilder->createView(),
+        ));
+    }
+
+    /**
      * @Route("/mySwaps", name="swap_user")
      */
     public function byUser()
@@ -63,5 +88,13 @@ class SwapServiceController extends AbstractController
                 'Category' => $swap->getSwapServiceType()->getLabel());
         }
         return new JsonResponse($swapsServicesArray);
+    }
+
+    /**
+     * @Route("/booking", name="swap_booking")
+     */
+    public function booking(Request $request)
+    {
+        return $this->render('core/swapService/booking.html.twig');
     }
 }

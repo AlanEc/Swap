@@ -107,7 +107,7 @@ $(document).ready(function() {
                         $('#resultSearch').append('<div class="panel panel-default ' + i + ' "><div class="row">' +
                             '<div class= col-md-3 ">' + data[i]['User'] + '</div>' +
                             '<div class="col-md-5 ">' + data[i]['Category'] + '</div>' +
-                            '<div class="col-md-3 ">Voir<a href="{{ path(\\\'swap_focus\\\', { \\\'id\\\': swap.id }) }}">Voir le Swap</a></div></div</div></div>');
+                            '<div class="col-md-3 "><a href="{{ path(\\\'swap_focus\\\', { \\\'id\\\': swap.id }) }}">Voir le Swap</a></div></div</div></div>');
                         //$('#resir le Swap</a></div></div><b>Nom</b> : ' + data[i]['Latitude'] + '</div>');
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(data[i]['Latitude'], data[i]['Longitude']),
