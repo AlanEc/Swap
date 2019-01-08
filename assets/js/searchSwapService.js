@@ -1,5 +1,5 @@
 import 'flexslider'
-import $ from "jquery";
+import 'gasparesganga-jquery-loading-overlay'
 
 require('../css/searchSwapService.css');
 
@@ -8,7 +8,7 @@ $(document).ready(function() {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -33.8688, lng: 151.2195},
             zoom: 13,
-            mapTypeId: 'roadmap'
+            mapTypeId: 'roadmap' 
         });
 
         // Create the search box and link it to the UI element.
@@ -94,6 +94,8 @@ $(document).ready(function() {
 
             var marker = [];
 
+            $.LoadingOverlay("show");
+
             $.ajax({
                 url : 'ajax_search',
                 type : 'POST',
@@ -110,6 +112,9 @@ $(document).ready(function() {
                         markers.push(marker);
                     }
                 },
+                complete: function() {
+                    $.LoadingOverlay("hide");
+                }
             });
         });
 
