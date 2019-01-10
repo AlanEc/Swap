@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/formSwapService.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-3">
+            <div class="panel-body shadow Compte">
+                <img class="img-responsive" src="">
+                <a href="">
+                    <button id="boutonProfil" class="btn btn-primary text-center col-md-12">Modifier mon profil</button>
+                </a>
+            </div>
+        </div>
+        <div class=" col-md-7">
+            <div class="panel-body shadow FormulaireDetailsSwap">
+                <h3>Ajouter un Swap</h3>
+                <span class="sousTitre"><p>2. Decrire le Swap</p><span>
+				{{ form_start(form) }}
+                {# Les erreurs générales du formulaire. #}
+                {{ form_errors(form, { 'attr': { 'class' : 'form-control' }} ) }}
+                {{ form_row(form.people_quantity, { 'attr': { 'class' : 'form-control' }} ) }}
+                {{ form_row(form.adress_1, { 'attr': { 'class' : 'form-control' }} ) }}
+                {{ form_row(form.save, { 'attr': { 'class' : 'col-sm-offset-18 btn btn-primary ' }} ) }}
+                {{ form_rest(form, { 'attr': { 'class' : 'form-control' }} ) }}
+                {{ form_end(form, { 'attr': { 'class' : 'form-control' }} ) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/formSwapService.js') }}"></script>
+{% endblock %}

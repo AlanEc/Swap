@@ -28,6 +28,7 @@
                 <div class="navbar-collapse collapse">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <div id="icon">
+                            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class=""><a href=""> <span class="glyphicon glyphicon-envelope fa-lg"></span></a></li>
                                 <li><a href=""><span class="glyphicon glyphicon-user fa-lg"></span>{{ 'navbar.account'|trans }}</a></li>
@@ -56,6 +57,8 @@
         {% block body %}{% endblock %}
         {% block javascripts %}
         {% endblock %}
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKKFn2CuDFoSkzLG0PJf2nhTyk9sSNbBE&libraries=places&callback=initAutocomplete"
+        ></script>
         <script src="{{ asset('build/app.js') }}"></script>
     </body>
 </html>

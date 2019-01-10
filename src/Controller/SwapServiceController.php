@@ -12,9 +12,12 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\SwapService;
+use App\Entity\SwapServiceType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use App\Form\SwapServiceTypeFormType;
+use App\Form\SwapServiceFormType;
 
 class SwapServiceController extends AbstractController
 {
@@ -24,23 +27,26 @@ class SwapServiceController extends AbstractController
      */
     public function addSwapAction(Request $request)
     {
+        $swapServiceType = new SwapServiceType();
+        $form = $this->createForm(SwapServiceTypeFormType::class, $swapServiceType);
+
         $swapService = new SwapService();
         $form = $this->createForm(SwapServiceFormType::class, $swapService);
+        $form->handleRequest($request);
 
-        $form = $this->container->get('Swap_form.FormCreator');
-        $creationForm = $form->creation($formBuilder, $request, $service);
-
-        if ($formBuilder->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($service);
+            $em->persist($swapServiceType);
             $em->flush();
-            return $this->redirectToRoute('swap_ajouter_service_details', array(
-                'id' => $service->getId()
-            )); }
+            // return $this->redirectToRoute('swap_ajouter_service_details', array(
+             //   'id' => $service->getId()
+            //));
+        }
 
-        return $this->render('SwapPlatformBundle:Service:ajouterSwap.html.twig', array(
-            'form' => $formBuilder->createView(),
-        ));
+        return $this->render('core/swapService/formDetailsSwapService.html.twig', [
+            'form' => $form->createView(),
+            'swapService' => $swapServiceType,
+        ]);
     }
 
     /**
@@ -56,7 +62,7 @@ class SwapServiceController extends AbstractController
     }
 
     /**
-     * @Route("/search", name="swap_search")
+     * @Route("/search/", name="swap_search")
      */
     public function search()
     {

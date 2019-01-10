@@ -5,28 +5,27 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use App\Entity\User;
+use App\Entity\SwapServiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-
-class UserFormType extends AbstractType
+class SwapServiceTypeFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', null, array(
-            'required'   => false,
-            ))
-            ->add('last_name')
-            ->add('first_name')
-            ->add('password')
-        ;
+            ->add('label', ChoiceType::class, array(
+                    'choices' => array(
+                    'Hebergement' => 'Hebergement',
+                    'Repas' => 'Repas'))
+            )
+            ->add('save', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class
+            'data_class' => SwapServiceType::class
         ]);
     }
 }

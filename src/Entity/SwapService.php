@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SwapService
 {
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -117,7 +116,6 @@ class SwapService
         $this->bookings = new ArrayCollection();
         $this->transactions = new ArrayCollection();
     }
-    
     
     public function getId(): ?int
     {

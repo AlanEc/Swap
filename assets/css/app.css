@@ -11,6 +11,10 @@
     margin-bottom: 20px;
 }
 
+.pac-container{
+    z-index: 9999;
+}
+
 .form-signin {
     max-width: 420px;
     padding: 30px 38px 66px;
