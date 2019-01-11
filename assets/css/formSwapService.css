@@ -38,7 +38,7 @@ div.panel-body.shadow.Profile {
     width: 50% !important;
 }
 
-#service_details_longitude, #service_details_lattitude {
+#swap_service_form_country, #swap_service_form_postal_code,#swap_service_form_region,#swap_service_form_city {
     visibility: hidden;
 }
 

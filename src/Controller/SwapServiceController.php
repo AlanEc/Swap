@@ -16,36 +16,51 @@ use App\Entity\SwapServiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
 use App\Form\SwapServiceTypeFormType;
 use App\Form\SwapServiceFormType;
+use App\Service\EntityFactory;
 
 class SwapServiceController extends AbstractController
 {
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/add", name="swap_add")
+     * @Route("/create", name="swap_create")
      */
-    public function addSwapAction(Request $request)
+    public function create(Request $request, EntityFactory $entityFactory)
     {
-        $swapServiceType = new SwapServiceType();
-        $form = $this->createForm(SwapServiceTypeFormType::class, $swapServiceType);
-
-        $swapService = new SwapService();
-        $form = $this->createForm(SwapServiceFormType::class, $swapService);
+        $form = $this->createForm(SwapServiceTypeFormType::class);
         $form->handleRequest($request);
+        $session = new Session();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($swapServiceType);
-            $em->flush();
-            // return $this->redirectToRoute('swap_ajouter_service_details', array(
-             //   'id' => $service->getId()
-            //));
+        if (!isset($swapService)) {
+            $swapService = $entityFactory->create('SwapService');
+            $formDetails = $this->createForm(SwapServiceFormType::class, $swapService);
+            $formDetails->handleRequest($request);
         }
 
-        return $this->render('core/swapService/formDetailsSwapService.html.twig', [
+        if ($form->isSubmitted() && $form->isValid()) {
+            $session->set('swapServiceType', $form->getData());
+            return $this->render('core/swapService/formDetailsSwapService.html.twig', [
+                'form' => $formDetails->createView(),
+                'swapService' => $swapService,
+            ]);
+        }
+
+        if ($formDetails->isSubmitted() && $formDetails->isValid()) {
+            $swapServiceType = $session->get('swapServiceType');
+            $repository = $this->getDoctrine()->getRepository(SwapServiceType::class);
+            $swapServiceType = $repository->findOneBy(['label' => $swapServiceType['label']]);
+            $swapService->setSwapServiceType($swapServiceType);
+            $entityFactory->persist($swapService);
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('app_account');
+        }
+
+        return $this->render('core/swapService/formSwapService.html.twig', [
             'form' => $form->createView(),
-            'swapService' => $swapServiceType,
         ]);
     }
 

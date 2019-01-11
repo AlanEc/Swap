@@ -34,6 +34,12 @@ class SwapServiceFormType extends AbstractType
             ->add('city', TextType::class, array(
                 'label' => false
             ))
+            ->add('postal_code', TextType::class, array(
+                'label' => false
+            ))
+            ->add('region', TextType::class, array(
+                'label' => false
+            ))
             ->add('longitude', TextType::class, array(
                 'label' => false
             ))

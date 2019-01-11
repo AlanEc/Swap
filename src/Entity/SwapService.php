@@ -55,7 +55,7 @@ class SwapService
     private $adress_3;
 
     /**
-     * @ORM\Column(type="string", length=6)
+     * @ORM\Column(type="string", length=45)
      */
     private $postal_code;
 
