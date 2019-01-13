@@ -89,7 +89,7 @@ class SwapServiceController extends AbstractController
     }
 
     /**
-     * @Route("/ajax_search", name="swap_ajax_search")
+     * @Route("/search/ajax_search", name="swap_ajax_search")
      */
     public function ajax(Request $request)
     {

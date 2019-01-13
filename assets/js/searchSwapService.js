@@ -8,15 +8,14 @@ $(document).ready(function() {
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
 
+        var lat = parseFloat(sessionStorage.getItem('lat'));
+        var lng = parseFloat(sessionStorage.getItem('lng'));
+
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -33.8688, lng: 151.2195},
-            zoom: 13,
+            center: {lat: lat, lng: lng},
+            zoom: 5,
             mapTypeId: 'roadmap'
         });
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
 
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function () {

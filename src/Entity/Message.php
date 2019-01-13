@@ -17,6 +17,13 @@ class Message
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="serviceId", type="integer", nullable=true)
+     */
+    private $serviceId;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $date_send;
@@ -30,6 +37,11 @@ class Message
      * @ORM\Column(type="boolean")
      */
     private $disabled;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $parentId;
 
     /**
      * @ORM\Column(type="datetime")
@@ -70,9 +82,21 @@ class Message
         return $this->content;
     }
 
+    public function getServiceId(): ?string
+    {
+        return $this->serviceId;
+    }
+
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function setServiceId(string $serviceId): self
+    {
+        $this->serviceId = $serviceId;
 
         return $this;
     }
@@ -82,9 +106,21 @@ class Message
         return $this->disabled;
     }
 
+    public function getParentId(): ?int
+    {
+        return $this->parentId;
+    }
+
     public function setDisabled(bool $disabled): self
     {
         $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    public function setParentId(int $parentId): self
+    {
+        $this->parentId = $parentId;
 
         return $this;
     }

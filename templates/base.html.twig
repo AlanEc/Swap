@@ -54,11 +54,12 @@
                 {{ message }}
             </div>
         {% endfor %}
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKKFn2CuDFoSkzLG0PJf2nhTyk9sSNbBE&libraries=places&callback=initAutocomplete"
+        ></script>
+        <script type="text/javascript" src="{{ asset('build/test.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('build/app.js') }}"></script>
         {% block body %}{% endblock %}
         {% block javascripts %}
         {% endblock %}
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKKFn2CuDFoSkzLG0PJf2nhTyk9sSNbBE&libraries=places&callback=initAutocomplete"
-        ></script>
-        <script src="{{ asset('build/app.js') }}"></script>
     </body>
 </html>

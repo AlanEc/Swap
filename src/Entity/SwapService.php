@@ -45,7 +45,7 @@ class SwapService
     private $adress_1;
 
     /**
-     * @ORM\Column(type="string", length=45, nullable=true))
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private $adress_2;
 
