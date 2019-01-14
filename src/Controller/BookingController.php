@@ -17,7 +17,7 @@ use App\Entity\BookingType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Form\BookingFormType;
-
+use App\Service\BookingManager;
 
 class BookingController extends AbstractController
 {
@@ -36,33 +36,17 @@ class BookingController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/booking/new/{swapId}", name="swap_booking_new")
      */
-    public function new(Request $request, $swapId)
+    public function new(Request $request, $swapId, BookingManager $bookingManager)
     {
         $form = $this->createForm(BookingFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $booking  = $form->getData();
-            $booking->setDisabled(0);
+            $swapService = $bookingManager->createBooking($booking, $swapId);
 
-            $repository = $this->getDoctrine()->getRepository(SwapService::class);
-            $swap = $repository->findOneBy(['id' => $swapId]);
-
-            $repository = $this->getDoctrine()->getRepository(BookingState::class);
-            $bookingState = $repository->findOneBy(['id' => 92]);
-
-            $repository = $this->getDoctrine()->getRepository(BookingType::class);
-            $bookingType = $repository->findOneBy(['id' => 48]);
-
-            $user = $this->getUser();
-
-            $booking->setBookingType($bookingType);
-            $booking->setBookingState($bookingState);
-            $booking->setUser($user);
-            $booking->setSwapService($swap);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($booking);
-            $em->flush();
+            $this->addFlash('success', 'Article Created! Knowledge is power!');
+            return $this->redirectToRoute('app_account');
         }
 
         return $this->render('core/swapService/booking.html.twig', [
