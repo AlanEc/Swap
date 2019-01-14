@@ -1,0 +1,336 @@
+.containerBooking {
+    margin-top: 75px;
+}
+
+/*deleteSwap*/
+#deleteSwap {
+    margin-top: 100px;
+    text-align: center;
+    min-height: 100px;
+}
+
+#deleteSwap p {
+    margin-bottom: 30px;
+    color: #44B6D6;
+    font-size: 1.3em;
+}
+
+/*Modal*/
+#modalFacebook {
+    margin-left: 0%;
+}
+
+/*Calendar*/
+.box {
+    max-width: 360px;
+    margin: 0 auto;
+    font-weight: 600;
+    margin-top: 2em;
+    padding: 1.6em;
+    background-color: #fafafa;
+    border: 1px solid #d8d8d8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+#deleted_date_deletedDate, #deleted_date_minDate, #deleted_date_maxDate {
+    display: none;
+}
+
+#deleted_date_save {
+    margin: 25px 0 25px 0;
+}
+
+#calendar {
+    margin-top: 50px;
+}
+
+#deleteDate {
+    margin: auto;
+    width: 100px;
+}
+
+/*My Swaps*/
+#mySwap:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.mySwaps {
+    color: #44a1b8;
+}
+
+#rowMySwaps {
+    margin-top: 0px;
+}
+
+.deletedSwap {
+    text-align: center;
+    color: #44a1b8;
+}
+
+.fontbig {
+    font-size: 200%;
+}
+
+/* Mail Box */
+div#mailBox {
+    background-color: white;
+}
+
+/* Page Conversation */
+#silouhetteConversation {
+    max-width: 100px;
+    margin: auto;
+}
+
+.namePorfilConversation {
+    text-align: center;
+}
+
+#bookingSummary p {
+    font-size: 14px;
+}
+
+#polygon {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#bloc-author-conversation {
+    min-height: 100px;
+    border-radius: 20px 0 20px 20px;
+    background: rgba(163,210,240,1);
+}
+
+#bloc-recipient-conversation {
+    min-height: 100px;
+    border-radius: 0px 20px 20px 20px;
+}
+
+#conversation-answer {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#conversation-message {
+    padding-right: 0px;
+}
+
+#polygon-message {
+    padding-left: 0px;
+}
+
+#bloc-message-conversation {
+    min-height: 200px;
+    border-radius: 20px 0 20px 20px;
+}
+
+#silhouette img {
+    border:1px solid #b8b8b8;
+    height:55px;
+}
+
+#silhouette {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#message_save {
+    margin-top: 20px;
+}
+
+#message_content {
+    height: 100px;
+}
+
+/*Account*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    border-top: 1px solid #ddd;
+}
+
+/*Account*/
+/*Panel cllickable*/
+.div.panel-body.panelClickable{
+    cursor: pointer;
+}
+
+
+#panelClickableBody {
+    background: white;
+    display: none;
+}
+
+.panel-heading span {
+    margin-top: -20px;
+    font-size: 15px;
+}
+
+/* */
+#map {
+    height: 700px;
+}
+
+.icone {
+    font-size: 255%;
+}
+
+h1 {
+    text-align: center !important;
+    color: #44A1B8 !important;
+    font-size: 20px !important;
+}
+
+.panel-body shadow {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+}
+
+.panel-body {
+    background: #f2f2f2;
+    text-align: justify;
+    font-size: 120%;
+}
+
+.articleAccueil{
+    font-family: 'Helvetica', sans-serif;
+    color: #777;
+}
+
+article {
+    margin-top: 20px;
+}
+
+body {
+    background-color: #F3F3F3 !important;
+}
+
+.shadow {
+    box-shadow:  8px 8px 12px #aaa !important;
+}
+
+/*Caroussel*/
+
+.flexslider ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.flex-direction-nav {
+    display: none;
+}
+
+nav.navbar.navbar-inverse {
+    margin: 0px;
+}
+
+.flexslider {
+    margin-bottom: 1020px;
+}
+
+nav.navbar.navbar-inverse {
+    background-color: rgba(255,255,255);
+    border-color: rgba(255,255,255,0.9);
+}
+
+.separation {
+    padding-top: 13px;
+}
+
+a {
+    color: #119f18 !important;
+}
+
+#iconeNavigation {
+    padding-left: 200px;
+}
+
+.ll {
+    border: 2px solid black;
+    height: 20px;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+div.panel-body.shadow.Compte {
+    background-color: white;
+    border-radius: 4px;
+}
+
+#boutonProfil {
+    margin-top: 10px;
+}
+
+h3 {
+    margin-top: 0px !important;
+}
+
+/*.form-control {
+	width: 70% !important;
+	display: inline !important;
+	margin-right: 0px;
+	margin-left: 25px;
+}*/
+
+.well {
+    border: none !important;
+    background-color: #F3F3F3 !important;
+}
+
+.well div {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.col-md-5 {
+    margin-left: 4.16666667% !important;
+}
+
+label {
+    font-weight: normal !important;
+}
+
+/* Formulaire - Ajouter un Swap */
+.FormulaireAjouterSwap {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: 'Helvetica', sans-serif;
+    height: 250px;
+}
+
+#service_save.btn-primary {
+    margin-top: 60px;
+    margin-left: 500px;
+}
+
+/* Formulaire - Details Swap */
+.FormulaireDetailsSwap {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 100%;
+    height: 350px;
+}
+
+.FormulaireDetailsSwap label {
+    padding-top : 5px;
+}
+
+.FormulaireDetailsSwap select {
+    width: 50% !important;
+}
+
+#service_details_longitude, #service_details_lattitude {
+    visibility: hidden;
+}
+
+#service_details_city, #service_details_country {
+    visibility: hidden;
+}
