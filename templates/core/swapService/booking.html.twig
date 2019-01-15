@@ -22,9 +22,10 @@
                     <span class="sousTitre"><p>Effectuer une réservation</p><span>
                     {{ form_start(form) }}
                     {# Les erreurs générales du formulaire. #}
-                    {{ form_errors(form, { 'attr': { 'class' : 'form-control' }} ) }}
                     {{ form_row(form.date_start, { 'attr': { 'class' : 'form-control' }} ) }}
+                    {{ form_errors(form.date_start) }}
                     {{ form_row(form.date_end, { 'attr': { 'class' : 'form-control' }} ) }}
+                    {{ form_errors(form.date_end) }}
                     {{ form_row(form.save, { 'label': 'Réservation instantanée', 'attr': { 'class' : 'col-sm-offset-18 btn btn-primary ' }} ) }}
                     {{ form_rest(form, { 'attr': { 'class' : 'form-control' }} ) }}
                     {{ form_end(form, { 'attr': { 'class' : 'form-control' }} ) }}
@@ -51,9 +52,18 @@
         </div>
     </div>
     </div>
+    <div class="js-user-rating" data-is-authenticated="{{ dateBooked|json_encode
+    }}">
+    </div>
 {% endblock %}
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        var dateBooked = document.querySelector('.js-user-rating');
+        var dateBooked = dateBooked.dataset.isAuthenticated;
+        var test = {{ userArray|json_encode }};
+        console.log(test);
+    </script>
     <script src="{{ asset('build/datepicker.js') }}"></script>
 {% endblock %}

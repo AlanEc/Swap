@@ -16,6 +16,7 @@ use App\Entity\BookingState;
 use App\Entity\BookingType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Cookie;
 use App\Form\BookingFormType;
 use App\Service\BookingManager;
 
@@ -23,21 +24,36 @@ class BookingController extends AbstractController
 {
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/booking", name="swap_booking")
-     */
-    public function index(Request $request)
-    {
-        return $this->render('core/swapService/booking.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
      * @Route("/booking/new/{swapId}", name="swap_booking_new")
      */
     public function new(Request $request, $swapId, BookingManager $bookingManager)
     {
+        $repository = $this->getDoctrine()->getRepository(Booking::class);
+        $bookingsList = $repository->findBy(['swapService' => $swapId]);
+
+
+        $array = [];
+
+        $userArray = array(
+            array('name'=>'John Doe', 'email'=>'john@example.com'),
+            array('name'=>'Marry Moe', 'email'=>'marry@example.com'),
+            array('name'=>'Smith Watson', 'email'=>'smith@example.com')
+        );
+
+         foreach($bookingsList as $key => $booked)
+        {
+            $datetime = $booked->getDateStart();
+
+            $array[$key]['dateStart']['day'] =  trim($datetime->format('d'), 0);
+            $array[$key]['dateStart']['month'] = trim($datetime->format('m'), 0);
+            $array[$key]['dateStart']['year'] = trim($datetime->format('y'), 0);
+
+            $datetime = $booked->getDateEnd();
+            $array[$key]['dateEnd']['day'] = trim($datetime->format('d'), 0);
+            $array[$key]['dateEnd']['month'] = trim($datetime->format('m'), 0);
+            $array[$key]['dateEnd']['year'] = trim($datetime->format('y'), 0);
+        }
+
         $form = $this->createForm(BookingFormType::class);
         $form->handleRequest($request);
 
@@ -51,6 +67,8 @@ class BookingController extends AbstractController
 
         return $this->render('core/swapService/booking.html.twig', [
             'form' => $form->createView(),
+            'dateBooked' => json_encode($array),
+            'userArray' => json_encode($userArray),
         ]);
     }
 }
