@@ -1,5 +1,48 @@
 {% extends 'base.html.twig' %}
 {% block title %}Back office!{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/admin.css') }}" rel="stylesheet" />
+{% endblock %}
 {% block body %}
-    <h1>Manage Your Account</h1>
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-10">
+            <div class="panel panel-default">
+                <div class="panel-body tab">
+                    <div class="tabbable" id="tabs-895083">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#panel-508380" data-toggle="tab">Utilisateurs</a>
+                            </li>
+                            <li>
+                                <a href="#panel-707003" data-toggle="tab">Messages</a>
+                            </li>
+                            <li>
+                                <a href="#panel-707004" data-toggle="tab">Réservation</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                        <div class="tab-pane active" id="panel-508380">
+                            <table class="table table-striped">
+                                {% include 'admin/user/index.html.twig' %}
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="panel-707003">
+                            <table class="table table-striped" id="comment_signaler">
+                                {% include 'admin/message/index.html.twig' %}
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="panel-707004">
+                            <table class="table table-striped" id="admin_coment">
+                                {% include 'admin/booking/index.html.twig' %}
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/admin.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,25 @@
+.panel.panel-default {
+    margin-top: 75px;
+    overflow: auto;
+}
+
+.tab {
+    background-color: white !important;
+    box-shadow: none !important;
+}
+
+#backBtn {
+    background-color: white;
+    color: black;
+}
+
+#saveBtn {
+    margin: auto;
+    display: block;
+    margin-bottom: 30px;
+}
+
+h1 {
+    text-align: center;
+}
+

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/admin.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <div class="containerCrud">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10">
+                <div class="panel panel-default">
+                    <div class="panel-body tab">
+                        <h1>Message</h1>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ message.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ServiceId</th>
+                                    <td>{{ message.serviceId }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date_send</th>
+                                    <td>{{ message.dateSend ? message.dateSend|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Content</th>
+                                    <td>{{ message.content }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Disabled</th>
+                                    <td>{{ message.disabled ? 'Yes' : 'No' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ParentId</th>
+                                    <td>{{ message.parentId }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Created_at</th>
+                                    <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="{{ path('message_index') }}" id="backBtn" type="button" class="btn btn-primary">back to list</a>
+                        <a href="{{ path('message_edit', {'id': message.id}) }}" id="editBtn" type="button" class="btn btn-primary">edit</a>
+                        {# {{ include('admin/message/_delete_form.html.twig') }} #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/admin.js') }}"></script>
+{% endblock %}

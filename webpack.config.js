@@ -29,6 +29,7 @@ Encore
     .addEntry('booking', './assets/js/booking.js')
     .addEntry('message', './assets/js/message.js')
     .addEntry('formSwapService', './assets/js/formSwapService.js')
+    .addEntry('admin', './assets/js/admin.js')
 
     .autoProvidejQuery()
     .addPlugin(new CopyWebpackPlugin([

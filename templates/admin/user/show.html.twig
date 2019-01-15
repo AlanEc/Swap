@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/admin.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <div class="containerCrud">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10">
+                <div class="panel panel-default">
+                    <div class="panel-body tab">
+                        <h1>User</h1>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ user.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Roles</th>
+                                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Password</th>
+                                    <td>{{ user.password }}</td>
+                                </tr>
+                                <tr>
+                                    <th>First_name</th>
+                                    <td>{{ user.firstName }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Last_name</th>
+                                    <td>{{ user.lastName }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <td>{{ user.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Account</th>
+                                    <td>{{ user.account }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Disabled</th>
+                                    <td>{{ user.disabled ? 'Yes' : 'No' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Created_at</th>
+                                    <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Updated_at</th>
+                                    <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="{{ path('user_index') }}" id="backBtn" type="button" class="btn btn-primary">back to list</a>
+                        <a href="{{ path('user_edit', {'id': user.id}) }}" id="editBtn" type="button" class="btn btn-primary">edit</a>
+                        {#{{ include('admin/user/_delete_form.html.twig') }} #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/admin.js') }}"></script>
+{% endblock %}

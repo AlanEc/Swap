@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Message{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('build/admin.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <div class="containerCrud">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10">
+                <div class="panel panel-default">
+                    <div class="panel-body tab">
+                        <h1>Create new Message</h1>
+                        {{ include('admin/message/_form.html.twig') }}
+                        <a href="{{ path('message_index') }}" id="backBtn" type="button" class="btn btn-primary">back to list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/admin.js') }}"></script>
+{% endblock %}

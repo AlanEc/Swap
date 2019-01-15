@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking{% endblock %}
+
+{% block body %}
+    <h1>Booking</h1>
+    {# <a href="{{ path('booking_new') }}" type="button" class="btn btn-primary">Create new</a> #}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_start</th>
+                <th>Date_end</th>
+                <th>Disabled</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.dateStart ? booking.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.dateEnd ? booking.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.disabled ? 'Yes' : 'No' }}</td>
+                <td>{{ booking.createdAt ? booking.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.updatedAt ? booking.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('booking_show', {'id': booking.id}) }}">show</a>
+                    <a href="{{ path('booking_edit', {'id': booking.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
