@@ -34,4 +34,17 @@ class MessageRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function conversationRecovery($serviceId, $senderId)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.serviceId = :searchTerm ')
+            ->setParameter('searchTerm', $serviceId)
+            ->andWhere('IDENTITY(m.userSender) LIKE :search OR IDENTITY(m.userReceiver) LIKE :search')
+            ->setParameter('search', '%'.$senderId.'%')
+            ->orderBy('m.date_send', 'DESC')
+            ->getQuery()
+            ->execute();
+
+    }
 }

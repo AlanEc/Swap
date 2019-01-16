@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  */
 class Message
 {
+    public function __construct() {
+        $this->SetDisabled(0);
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -25,6 +30,7 @@ class Message
 
     /**
      * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $date_send;
 
@@ -39,12 +45,8 @@ class Message
     private $disabled;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $parentId;
-
-    /**
      * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $created_at;
 

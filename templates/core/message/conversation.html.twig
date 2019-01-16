@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('build/message.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <div class="containerMessage">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-1">
+            <div class="panel-body shadow Compte">
+                <img class="img-responsive img-circle img-responsive" id="silouhetteConversation" src="{{ asset('build/static/silhouette.png') }}">
+                {% if service.user.id == userId %}
+                    <div class="namePorfilConversation">{{ service.user.username }}</div>
+                {% else %}
+                    <div class="namePorfilConversation"></div>
+                {% endif %}
+                <div id="bookingSummary">
+                    <p>Type de demande : </p>
+                    <p>Dates :  </p>
+                    <p>Nombre de personnes : </p>
+                </div>
+            </div>
+        </div>
+        <div id="conversation-message" class="col-md-offset-1 col-md-6">
+            <div id="bloc-message-conversation" class="panel-body shadow Compte">
+                {{ form_start(form) }}
+                {{ form_errors(form, { 'attr': { 'class' : 'form-control' }} ) }}
+                {{ form_row(form.content, { 'attr': { 'class' : 'form-control' }} ) }}
+                {{ form_row(form.save, { 'attr': { 'class' : 'btn btn-group pull-right' }} ) }}
+                {{ form_rest(form, { 'attr': { 'class' : 'form-control' }} ) }}
+                {{ form_end(form, { 'attr': { 'class' : 'form-control' }} ) }}
+            </div>
+            {% for message in listMessage %}
+                {% if message.userSender.id == userId %}
+                    <div class="row">
+                        <div id="conversation-answer" class="col-xs-10">
+                            <div id="bloc-author-conversation" class="panel-body shadow Compte">
+                                <p>Le : {{ message.dateSend | date('d-m-Y H:i:s') }}</p>
+                                {{ message.content }}
+                            </div>
+                        </div>
+                        <div id="polygon" class="col-xs-1">
+                            <svg width="100%" height="30" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <polygon points="0,0 100,0 0,100" style="fill:rgba(163,210,240,1)" />
+                            </svg>
+                        </div>
+                        <div id="silhouette" class="col-xs-1">
+                            <img class="img-responsive img-circle" src="{{asset('build/static/silhouette.png') }}"  />
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div id="silhouette" class="col-xs-1">
+                            <img class="img-responsive img-circle" src="{{asset('build/static/silhouette.png') }}"  />
+                        </div>
+                        <div id="polygon" class="col-xs-1">
+                            <svg width="100%" height="30" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <polygon points="0,0 100,0 100,100" style="fill:#fff" />
+                            </svg>
+                        </div>
+                        <div id="conversation-answer" class="col-xs-10">
+                            <div id="bloc-recipient-conversation" class="panel-body shadow Compte">
+                                <p>Le : {{ message.dateSend | date('d-m-Y H:i:s')}}</p>
+                                {{ message.content }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/message.js') }}"></script>
+{% endblock %}

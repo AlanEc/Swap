@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\MessageFormType;
 use App\Entity\Message;
 use App\Entity\SwapService;
+use App\Entity\User;
+use App\Service\MessageManager;
 
 class MessageController extends AbstractController
 {
@@ -37,67 +39,40 @@ class MessageController extends AbstractController
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/message/{idMessage}/{recipientId}", name="app_message_send")
+     * @Route("/message/{serviceId}", name="app_message_send")
      */
-    public function send(Request $request, $idMessage, $recipientId)
+    public function send(Request $request, $serviceId, MessageManager $messageManager)
     {
-        $message = new Message();
         $form = $this->createForm(MessageFormType::class);
         $form->handleRequest($request);
 
         $user = $this->getUser();
 
-        $repository = $this->getDoctrine()->getRepository(Message::class);
-
-        $listMessage = $repository->findBy(
-            array('parentId' => $idMessage));
-
-        $messageParent = $repository->findOneBy(
-            array('id' => $idMessage));
-
-        $recipientMessageParent = $messageParent->getRecipient();
         $repository = $this->getDoctrine()->getRepository(SwapService::class);
+        $service = $repository->findOneBy(array('id' => $serviceId));
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $userReceiver = $repository->findOneBy(array('id' => $service->getUser()));
 
-        $service = $repository->findOneBy(
-            array('id' => $serviceId));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message  = $form->getData();
+            $message->setUserSender($user);
+            $message->setServiceId(756);
+            $message->setServiceId($serviceId);
+            $message->setUserReceiver($userReceiver);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($message);
+            $em->flush();
+        }
 
-        if ($formBuilder->isValid()) {
+        $messages = $this->getDoctrine()
+            ->getRepository(Message::class)
+            ->conversationRecovery($serviceId, $user->getId());
 
-            $repository = $repositoryService->get('SwapUserBundle:User');
-
-            if ($user == $recipientMessageParent ) {
-                $recipient = $repository->findOneBy(
-                    array('id' => $message->getRecipient()));
-
-                $message->setAuthor($user);
-                $message->setServiceId(756);
-                $message->setParentId($idMessage);
-                $message->setServiceId($serviceId);
-                $message->setRecipient($messageParent->getAuthor());
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($message);
-                $em->flush();
-
-            } else {
-
-                $recipient = $repository->findOneBy(
-                    array('id' => $recipientMessageParent));
-
-                $message->setUserSender($user);
-                $message->setParentId($idMessage);
-                $message->setServiceId($serviceId);
-                $message->setUserReceiver($recipient);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($message);
-                $em->flush();
-            }}
-
-        return $this->render('SwapPlatformBundle:Message:conversation.html.twig', array(
-            'listMessage' => $listMessage,
-            'messageParent' => $messageParent,
+        return $this->render('core/Message/conversation.html.twig', array(
+            'listMessage' => $messages,
             'service' => $service,
             'userId' => $user->getId(),
-            'form' => $formBuilder->createView(),
+            'form' => $form->createView(),
         ));
     }
 
