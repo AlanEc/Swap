@@ -22,8 +22,7 @@ class TransactionManager extends AbstractController
         $swap = $repository->findOneBy(['id' => $swapId]);
 
         $swapServiceType = $swap->getSwapServiceType()->getLabel();
-        $amountType = $this->getAmountType($swapServiceType,$booking);
-        $totalAmount = $this->calculTotalAmount($booking, $amountType);
+        $totalAmount = $this->calculTotalAmount($booking, $swapServiceType);
         $checkAccount = $this->checkAccount($user, $totalAmount);
 
         if ($checkAccount == true ) {
@@ -42,23 +41,12 @@ class TransactionManager extends AbstractController
         return true;
     }
 
-    public function getAmountType($swapServiceType) {
-        if ($swapServiceType == 'Hebergement') {
-            $amount = 10;
-        }
-
-        if ($swapServiceType == 'Repas') {
-            $amount = 5;
-        }
-
-        return $amount;
-    }
-
-    public function calculTotalAmount($booking, $amountType) {
+    public function calculTotalAmount($booking, $swapServiceType) {
         $datetime1 = date_create($booking->getDateStart()->format('Y-m-d'));
         $datetime2 = date_create($booking->getDateEnd()->format('Y-m-d'));
         $interval = date_diff($datetime1, $datetime2);
         $days =  $interval->d ;
+        $amountType = $swapServiceType->valueScale();
         $totalAmount = $days * $amountType;
 
         return $totalAmount;

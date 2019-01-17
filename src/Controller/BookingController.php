@@ -31,6 +31,10 @@ class BookingController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Booking::class);
         $bookingsList = $repository->findBy(['swapService' => $swapId]);
+        $repository = $this->getDoctrine()->getRepository(SwapService::class);
+        $swap = $repository->findOneBy(['id' => $swapId]);
+
+        $amount = $swap->getSwapServiceType()->getValueScale();
 
         $array = $bookingManager->createArrayDateBooked($bookingsList);
 
@@ -38,7 +42,7 @@ class BookingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $booking  = $form->getData();
+            $booking = $form->getData();
 
             $transaction = $transactionManagert->new($swapId, $booking);
             if ($transaction == true ) {
@@ -55,6 +59,7 @@ class BookingController extends AbstractController
             'form' => $form->createView(),
             'dateBooked' => json_encode($array),
             'swapId' => $swapId,
+            'amount' => json_encode($amount),
         ]);
     }
 

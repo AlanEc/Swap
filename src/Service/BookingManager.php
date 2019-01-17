@@ -43,20 +43,20 @@ class BookingManager extends AbstractController
 
     public function createArrayDateBooked(array $bookingsList): array
     {
-        $array = [];
+        $array = array();
 
         foreach($bookingsList as $key => $booked)
         {
             $datetime = $booked->getDateStart();
 
-            $array[$key]['dateStart']['day'] =  trim($datetime->format('d'), 0);
-            $array[$key]['dateStart']['month'] = trim($datetime->format('m'), 0);
-            $array[$key]['dateStart']['year'] = trim($datetime->format('y'), 0);
+            $array[$key]['dateStart']['day'] =  $datetime->format('d');
+            $array[$key]['dateStart']['month'] = $datetime->format('m');
+            $array[$key]['dateStart']['year'] = $datetime->format('y');
 
             $datetime = $booked->getDateEnd();
-            $array[$key]['dateEnd']['day'] = trim($datetime->format('d'), 0);
-            $array[$key]['dateEnd']['month'] = trim($datetime->format('m'), 0);
-            $array[$key]['dateEnd']['year'] = trim($datetime->format('y'), 0);
+            $array[$key]['dateEnd']['day'] = $datetime->format('d');
+            $array[$key]['dateEnd']['month'] = $datetime->format('m');
+            $array[$key]['dateEnd']['year'] = $datetime->format('y');
         }
 
         return $array;
