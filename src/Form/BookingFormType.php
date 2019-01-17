@@ -21,12 +21,12 @@ class BookingFormType extends AbstractType
     {
         $builder
             ->add('date_start', DateType::class, array(
-                'label' => 'Du',
+                'label' => false,
                 'html5' => false,
                 'widget' => 'single_text',
             ))
             ->add('date_end', DateType::class, array(
-                'label' => 'Au',
+                'label' => false,
                 'html5' => false,
                 'widget' => 'single_text',
             ))

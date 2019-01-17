@@ -2,6 +2,14 @@
     margin-top: 75px;
 }
 
+#booking_form_date_start, #booking_form_date_end {
+    visibility: hidden;
+}
+
+
+
+/*Old Css */
+
 /*deleteSwap*/
 #deleteSwap {
     margin-top: 100px;
