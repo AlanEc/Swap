@@ -32,7 +32,7 @@ class MessageController extends AbstractController
         $messages = $repository->getMessagesByUser($userId);
 
         return $this->render('core/message/mailBox.html.twig', [
-            'listMessage' => $messages,
+            'messages' => $messages,
             'idUser' => $userId,
         ]);
     }

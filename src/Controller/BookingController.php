@@ -24,21 +24,13 @@ class BookingController extends AbstractController
 {
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/booking/new/{swapId}", name="swap_booking_new")
+     * @Route("search/booking/new/{swapId}", name="swap_booking_new")
      */
     public function new(Request $request, $swapId, BookingManager $bookingManager)
     {
         $repository = $this->getDoctrine()->getRepository(Booking::class);
         $bookingsList = $repository->findBy(['swapService' => $swapId]);
-
-
         $array = [];
-
-        $userArray = array(
-            array('name'=>'John Doe', 'email'=>'john@example.com'),
-            array('name'=>'Marry Moe', 'email'=>'marry@example.com'),
-            array('name'=>'Smith Watson', 'email'=>'smith@example.com')
-        );
 
          foreach($bookingsList as $key => $booked)
         {
@@ -68,7 +60,7 @@ class BookingController extends AbstractController
         return $this->render('core/swapService/booking.html.twig', [
             'form' => $form->createView(),
             'dateBooked' => json_encode($array),
-            'userArray' => json_encode($userArray),
+            'swapId' => $swapId,
         ]);
     }
 }

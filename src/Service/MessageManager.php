@@ -14,9 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MessageManager extends AbstractController
 {
-
-
-
     public function persist() {
         if ($user == $recipientMessageParent ) {
             $recipient = $repository->findOneBy(

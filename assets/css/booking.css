@@ -239,8 +239,9 @@ nav.navbar.navbar-inverse {
     padding-top: 13px;
 }
 
-a {
-    color: #119f18 !important;
+#btnSendMessage {
+    color: white;
+    margin-top: 25px !important;
 }
 
 #iconeNavigation {

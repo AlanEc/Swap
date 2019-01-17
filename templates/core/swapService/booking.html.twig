@@ -12,7 +12,7 @@
                 <div class="panel-body shadow Compte">
                     <img class="img-responsive" src="{{asset('build/static/silhouette.png') }}">
                     <a href="asset('build/static/silhouette.png')">
-                        <button id="boutonProfil" class="btn btn-primary text-center col-md-12">Envoyer un message</button>
+                        <a id="btnSendMessage" href="{{ path('app_message_send', {'serviceId': swapId })}}" type="button" class="btn btn-primary text-center col-md-12">Envoyer un message</a>
                     </a>
                 </div>
             </div>
@@ -62,8 +62,6 @@
     <script type="text/javascript">
         var dateBooked = document.querySelector('.js-user-rating');
         var dateBooked = dateBooked.dataset.isAuthenticated;
-        var test = {{ userArray|json_encode }};
-        console.log(test);
     </script>
     <script src="{{ asset('build/datepicker.js') }}"></script>
 {% endblock %}

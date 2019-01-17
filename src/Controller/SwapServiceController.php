@@ -111,7 +111,7 @@ class SwapServiceController extends AbstractController
     }
 
     /**
-     * @Route("/booking", name="swap_booking")
+     * @Route("/search/focus/{id}", name="swap_focus")
      */
     public function booking(Request $request)
     {
