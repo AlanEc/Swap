@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Cookie;
 use App\Form\BookingFormType;
 use App\Service\BookingManager;
+use App\Service\TransactionManager;
 
 class BookingController extends AbstractController
 {
@@ -26,34 +27,27 @@ class BookingController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("search/booking/new/{swapId}", name="swap_booking_new")
      */
-    public function new(Request $request, $swapId, BookingManager $bookingManager)
+    public function new(Request $request, $swapId, BookingManager $bookingManager, TransactionManager $transactionManagert)
     {
         $repository = $this->getDoctrine()->getRepository(Booking::class);
         $bookingsList = $repository->findBy(['swapService' => $swapId]);
-        $array = [];
 
-         foreach($bookingsList as $key => $booked)
-        {
-            $datetime = $booked->getDateStart();
-
-            $array[$key]['dateStart']['day'] =  trim($datetime->format('d'), 0);
-            $array[$key]['dateStart']['month'] = trim($datetime->format('m'), 0);
-            $array[$key]['dateStart']['year'] = trim($datetime->format('y'), 0);
-
-            $datetime = $booked->getDateEnd();
-            $array[$key]['dateEnd']['day'] = trim($datetime->format('d'), 0);
-            $array[$key]['dateEnd']['month'] = trim($datetime->format('m'), 0);
-            $array[$key]['dateEnd']['year'] = trim($datetime->format('y'), 0);
-        }
+        $array = $bookingManager->createArrayDateBooked($bookingsList);
 
         $form = $this->createForm(BookingFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $booking  = $form->getData();
-            $swapService = $bookingManager->createBooking($booking, $swapId);
 
-            $this->addFlash('success', 'Article Created! Knowledge is power!');
+            $transaction = $transactionManagert->new($swapId, $booking);
+            if ($transaction == true ) {
+                $swapService = $bookingManager->createBooking($booking, $swapId);
+                $this->addFlash('success', 'Réservation effectué');
+            } else {
+                $this->addFlash('success', 'Vous ne disposez pas de suffisamment de Swap');
+            }
+
             return $this->redirectToRoute('app_account');
         }
 
@@ -62,5 +56,23 @@ class BookingController extends AbstractController
             'dateBooked' => json_encode($array),
             'swapId' => $swapId,
         ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("search/booking/accepted/{swapId}", name="swap_booking_accepted")
+     */
+    public function accepted(Request $request)
+    {
+
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("search/booking/canceled/{swapId}", name="swap_booking_canceled")
+     */
+    public function canceled(Request $request)
+    {
+
     }
 }

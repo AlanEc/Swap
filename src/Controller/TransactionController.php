@@ -16,11 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TransactionController extends AbstractController
 {
-    public function setDebit(ObjectManager $em, Request $request {
+    public function setDebit(ObjectManager $em, Request $request) {
 
     }
 
-    public function setCredit(ObjectManager $em, Request $request {
+    public function setCredit(ObjectManager $em, Request $request) {
 
     }
 }

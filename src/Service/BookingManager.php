@@ -32,13 +32,34 @@ class BookingManager extends AbstractController
 
         $booking->setBookingType($bookingType);
         $booking->setBookingState($bookingState);
-        $booking->setUser($user);
+        $booking->setUser($this->getUser());
         $booking->setSwapService($swap);
         $em = $this->getDoctrine()->getManager();
         $em->persist($booking);
         $em->flush();
 
         return 'success';
+    }
+
+    public function createArrayDateBooked(array $bookingsList): array
+    {
+        $array = [];
+
+        foreach($bookingsList as $key => $booked)
+        {
+            $datetime = $booked->getDateStart();
+
+            $array[$key]['dateStart']['day'] =  trim($datetime->format('d'), 0);
+            $array[$key]['dateStart']['month'] = trim($datetime->format('m'), 0);
+            $array[$key]['dateStart']['year'] = trim($datetime->format('y'), 0);
+
+            $datetime = $booked->getDateEnd();
+            $array[$key]['dateEnd']['day'] = trim($datetime->format('d'), 0);
+            $array[$key]['dateEnd']['month'] = trim($datetime->format('m'), 0);
+            $array[$key]['dateEnd']['year'] = trim($datetime->format('y'), 0);
+        }
+
+        return $array;
     }
 
 }
