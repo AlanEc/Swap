@@ -124,9 +124,9 @@ div#mailBox {
     border-radius: 20px 0 20px 20px;
 }
 
-#silhouette img {
-    border:1px solid #b8b8b8;
-    height:55px;
+img {
+    width: 100px !important;
+    height: 100px !important;
 }
 
 #silhouette {

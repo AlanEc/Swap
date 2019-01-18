@@ -72,6 +72,7 @@ class MessageController extends AbstractController
             'listMessage' => $messages,
             'service' => $service,
             'userId' => $user->getId(),
+            'user' => $user,
             'form' => $form->createView(),
         ));
     }

@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\UserFormType;
+use App\Service\FileUploader;
 
 class UserController extends AbstractController
 {
@@ -18,14 +19,17 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/profile", name="app_profile")
      */
-    public function index(ObjectManager $em, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function index(ObjectManager $em, Request $request, UserPasswordEncoderInterface $passwordEncoder, FileUploader $fileUploader)
     {
         $user = $this->getUser();
         $form = $this->createForm(UserFormType::class, $user);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            $file = $data->getImage();
+            $fileName = $fileUploader->upload($file);
+            $data->setImage($fileName);;
             $em->persist($user);
             $em->flush();
 

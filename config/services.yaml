@@ -5,8 +5,13 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'fr'
+    pictures_directory: 'public/uploads/pictures'
 
 services:
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%pictures_directory%'
+
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

@@ -98,10 +98,9 @@ class User implements UserInterface
     private $transactions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="user", cascade={"persist"})
-     * @Assert\Valid()
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
-    private $images;
+    private $image;
 
     public function __construct()
     {
@@ -425,6 +424,18 @@ class User implements UserInterface
                 $transaction->setUserSender(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }

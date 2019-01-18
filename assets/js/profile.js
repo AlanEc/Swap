@@ -1,1 +1,18 @@
 require('../css/profile.css');
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#user_form_image").change(function(){
+    console.log('coucou');
+    readURL(this);
+});

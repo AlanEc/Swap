@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,15 +20,13 @@ class Image
     private $id;
 
     /**
-     * @var string
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={ "application/image" })
      */
     private $image;
 
     /**
-     * @var
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="images", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User",inversedBy="image")
      * @ORM\JoinColumn(nullable=true)
      */
     private $user;
@@ -40,25 +37,7 @@ class Image
      */
     private $file;
 
-    const PATH = '%kernel.project_dir%/web/uploads/images';
-
-    public function upload()
-    {
-        $name = md5(uniqid()).'.'.$this->file->getClientOriginalName();
-        $this->file->move(self::PATH, $name);
-        $this->image = $name;
-        return;
-    }
-
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-    }
+    const PATH = 'public/build/images';
 
     /**
      * Get id
@@ -92,5 +71,27 @@ class Image
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     *
+     * @param \App\Entity\User $user
+     *
+     * @return Image
+     */
+    public function setUser(\App\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @return \App\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
