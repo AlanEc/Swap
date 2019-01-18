@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -95,6 +96,12 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="userSender")
      */
     private $transactions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="user", cascade={"persist"})
+     * @Assert\Valid()
+     */
+    private $images;
 
     public function __construct()
     {
