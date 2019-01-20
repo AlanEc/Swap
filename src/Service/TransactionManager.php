@@ -15,61 +15,72 @@ use App\Entity\SwapService;
 
 class TransactionManager extends AbstractController
 {
-    public function new($swapId, $booking) {
+    public function new($swap, $totalAmount) {
 
-        $user = $this->getUser();
-        $repository = $this->getDoctrine()->getRepository(SwapService::class);
-        $swap = $repository->findOneBy(['id' => $swapId]);
+        $transaction = new Transaction();
+        $transaction->setAmount($totalAmount);
+        $transaction->setUserSender($this->getUser());
+        $transaction->setUserReceiver($swap->getUser());
+        $transaction->setSwapService($swap);
+        $this->getDoctrine()->getManager();
+        $em->persist($transaction);
+        $em->flush();
 
-        $swapServiceType = $swap->getSwapServiceType()->getLabel();
-        $totalAmount = $this->calculTotalAmount($booking, $swapServiceType);
-        $checkAccount = $this->checkAccount($user, $totalAmount);
-
-        if ($checkAccount == true ) {
-            $transaction = new Transaction();
-            $transaction->setAmount($totalAmount);
-            $transaction->setUserSender($this->getUser());
-            $transaction->setUserReceiver($swap->getUser());
-            $transaction->setSwapService($swap);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($transaction);
-            $em->flush();
-        } else {
-            return false;
-        }
-
-        return true;
+        return $transaction;
     }
 
-    public function calculTotalAmount($booking, $swapServiceType) {
+    public function calculTotalAmount($booking, $swap) {
         $datetime1 = date_create($booking->getDateStart()->format('Y-m-d'));
         $datetime2 = date_create($booking->getDateEnd()->format('Y-m-d'));
         $interval = date_diff($datetime1, $datetime2);
         $days =  $interval->d ;
-        $amountType = $swapServiceType->valueScale();
+        $amountType = $swap->getSwapServiceType()->getValueScale();
         $totalAmount = $days * $amountType;
 
         return $totalAmount;
     }
 
-    public function checkAccount($user, $amount) {
-        if ($user->getAccount() >= $amount) {
-            $this->debit($user, $amount);
+    public function checkAccount($amount) {
+        if ($this->getUser()->getAccount() >= $amount) {
+            $this->debit($amount);
             return true;
         } else {
             return false;
         }
     }
 
-    public function debit($user, $amount) {
+    public function debit($amount) {
+        $user = $this->getUser();
         $newTotalAccount = $user->getAccount() - $amount;
         $user->setAccount($newTotalAccount);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+        $this->em->persist($user);
+        $this->em->flush();
     }
 
-    public function credit() {
+    public function credit($booking) {
+        $user = $booking->getTransaction()->getUserReceiver();
+        $transaction = $booking->getTransaction();
+        $amount = $transaction->getAmount();
+        $newTotalAccount = $user->getAccount() + $amount;
+        $user->setAccount($newTotalAccount);
+        $this->em->persist($user, $transaction);
+        $this->em->flush();
+    }
 
+    public function canceled($booking, $bookingState) {
+        $userSender = $booking->getTransaction()->getUserSender();
+        $transaction = $booking->getTransaction();
+        $amount = $transaction->getAmount();
+        $newTotalAccount = $userSender->getAccount() + $amount;
+        $userSender->setAccount($newTotalAccount);
+        $this->em->persist($userSender);
+
+        if ($bookingState->getLabel() == 'Accepted') {
+            $userReceiver = $booking->getTransaction()->getUserReceiver();
+            $newTotalAccount = $userReceiver->getAccount() - $amount;
+            $userReceiver->setAccount($newTotalAccount);
+            $this->em->persist($userReceiver);
+        }
+        $em->flush();
     }
 }

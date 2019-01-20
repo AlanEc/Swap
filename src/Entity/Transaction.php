@@ -127,4 +127,16 @@ class Transaction
 
         return $this;
     }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(Booking $booking): self
+    {
+        $this->booking = $booking;
+
+        return $this;
+    }
 }

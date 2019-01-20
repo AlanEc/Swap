@@ -99,6 +99,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Assert\File(maxSize="600000000")
+     *
      */
     private $image;
 

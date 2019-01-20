@@ -12,6 +12,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\UserFormType;
 use App\Service\FileUploader;
+use App\Service\ImageOptimizer;
 
 class UserController extends AbstractController
 {
@@ -19,7 +20,7 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/profile", name="app_profile")
      */
-    public function index(ObjectManager $em, Request $request, UserPasswordEncoderInterface $passwordEncoder, FileUploader $fileUploader)
+    public function index(ObjectManager $em, Request $request, UserPasswordEncoderInterface $passwordEncoder, ImageOptimizer $imageOptimizer, FileUploader $fileUploader)
     {
         $user = $this->getUser();
         $form = $this->createForm(UserFormType::class, $user);
@@ -28,7 +29,10 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $file = $data->getImage();
-            $fileName = $fileUploader->upload($file);
+            if ($file !== null) {
+                $fileName = $fileUploader->upload($file);
+                $resize =  $imageOptimizer->resize($fileName);
+            }
             $data->setImage($fileName);;
             $em->persist($user);
             $em->flush();

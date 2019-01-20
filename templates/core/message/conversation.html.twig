@@ -13,7 +13,7 @@
                 {% if user.image == null %}
                     <img class="img-responsive img-circle img-responsive" id="silouhetteConversation" src="{{ asset('build/static/silhouette.png') }}">
                 {% else %}
-                    <img class="img-responsive img-circle img-responsive" id="silouhetteConversation" src="{{asset('public/uploads/pictures/' ~ user.image) }}">
+                    <img class="img-responsive img-circle img-responsive" id="silouhetteConversation" src="{{asset('public/uploads/pictures/optimized/' ~ user.image) }}">
                 {% endif %}
                 {% if service.user.id == userId %}
                     <div class="namePorfilConversation">{{ service.user.username }}</div>

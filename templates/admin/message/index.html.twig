@@ -13,7 +13,6 @@
                 <th>Date_send</th>
                 <th>Content</th>
                 <th>Disabled</th>
-                <th>ParentId</th>
                 <th>Created_at</th>
                 <th>actions</th>
             </tr>
@@ -26,7 +25,6 @@
                 <td>{{ message.dateSend ? message.dateSend|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ message.content }}</td>
                 <td>{{ message.disabled ? 'Yes' : 'No' }}</td>
-                <td>{{ message.parentId }}</td>
                 <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('message_show', {'id': message.id}) }}">show</a>

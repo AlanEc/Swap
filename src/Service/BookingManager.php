@@ -12,15 +12,13 @@ use App\Entity\SwapService;
 use App\Entity\BookingType;
 use App\Entity\BookingState;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class BookingManager extends AbstractController
 {
-    public function createBooking(object $booking, int $swapId): string
+      public function createBooking(object $booking, object $swap, object $transaction): string
     {
         $booking->setDisabled(0);
-
-        $repository = $this->getDoctrine()->getRepository(SwapService::class);
-        $swap = $repository->findOneBy(['id' => $swapId]);
 
         $repository = $this->getDoctrine()->getRepository(BookingState::class);
         $bookingState = $repository->findOneBy(['id' => 92]);
@@ -33,12 +31,13 @@ class BookingManager extends AbstractController
         $booking->setBookingType($bookingType);
         $booking->setBookingState($bookingState);
         $booking->setUser($this->getUser());
+        $booking->setTransaction($transaction);
         $booking->setSwapService($swap);
         $em = $this->getDoctrine()->getManager();
         $em->persist($booking);
         $em->flush();
 
-        return 'success';
+        return true;
     }
 
     public function createArrayDateBooked(array $bookingsList): array
@@ -62,4 +61,27 @@ class BookingManager extends AbstractController
         return $array;
     }
 
+    public function getAcceptedState()
+    {
+        $repository = $this->getDoctrine()->getRepository(BookingState::class);
+        $bookingState = $repository->findOneBy(['id' => 90]);
+
+        return $bookingState;
+    }
+
+    public function getCanceledState()
+    {
+        $repository = $this->getDoctrine()->getRepository(BookingState::class);
+        $bookingState = $repository->findOneBy(['id' => 91]);
+
+        return $bookingState;
+    }
+
+    public function getDoneState()
+    {
+        $repository = $this->getDoctrine()->getRepository(BookingState::class);
+        $bookingState = $repository->findOneBy(['id' => 89]);
+
+        return $bookingState;
+    }
 }

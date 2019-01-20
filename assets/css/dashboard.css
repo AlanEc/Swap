@@ -41,3 +41,12 @@ div.panel-body.shadow.account {
     vertical-align: none !important;
 }
 
+#actionBtn {
+    display: flex;
+    justify-content: space-around;
+}
+
+span.badge {
+    margin-top: 1px;
+}
+

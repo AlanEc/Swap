@@ -28,10 +28,12 @@
                 <div class="navbar-collapse collapse">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <div id="icon">
-                            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                            <ul class="nav navbar-nav navbar-center">
+                                <li><input id="pac-input" class="form-control" type="text" placeholder="Search Box"></li>
+                            </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li class=""><a href=""> <span class="glyphicon glyphicon-envelope fa-lg"></span></a></li>
-                                <li><a href=""><span class="glyphicon glyphicon-user fa-lg"></span>{{ 'navbar.account'|trans }}</a></li>
+                                <li class=""><a href="{{ path('app_message_mailBox')}}"> <span class="glyphicon glyphicon-envelope fa-lg"></span></a></li>
+                                <li><a href="{{ path('app_account')}}">{{ 'navbar.account'|trans }}</a></li>
                                 <li class="separation">|</li>
                                 <li><a href="{{ path('app_logout') }}">{{ 'navbar.signout'|trans }}</a></li>
                             </ul>

@@ -21,13 +21,13 @@ class Booking
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", unique=true)
      * @Assert\DateTime()
      */
     private $date_start;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", unique=true)
      * @Assert\DateTime()
      */
     private $date_end;
@@ -197,6 +197,12 @@ class Booking
     }
 
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Transaction")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $transaction;
+
+    /**
      * @return Collection|BookingComment[]
      */
     public function getBookingComments(): Collection
@@ -223,6 +229,18 @@ class Booking
                 $bookingComment->setBooking(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTransaction(): ?Transaction
+    {
+        return $this->transaction;
+    }
+
+    public function setTransaction(Transaction $transaction): self
+    {
+        $this->transaction = $transaction;
 
         return $this;
     }
