@@ -243,10 +243,6 @@ nav.navbar.navbar-inverse {
     border-color: rgba(255,255,255,0.9);
 }
 
-.separation {
-    padding-top: 13px;
-}
-
 #btnSendMessage {
     color: white;
     margin-top: 25px !important;

@@ -21,13 +21,13 @@ class Booking
     private $id;
 
     /**
-     * @ORM\Column(type="datetime", unique=true)
+     * @ORM\Column(type="datetime")
      * @Assert\DateTime()
      */
     private $date_start;
 
     /**
-     * @ORM\Column(type="datetime", unique=true)
+     * @ORM\Column(type="datetime")
      * @Assert\DateTime()
      */
     private $date_end;

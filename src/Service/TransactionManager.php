@@ -22,7 +22,7 @@ class TransactionManager extends AbstractController
         $transaction->setUserSender($this->getUser());
         $transaction->setUserReceiver($swap->getUser());
         $transaction->setSwapService($swap);
-        $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($transaction);
         $em->flush();
 
@@ -53,8 +53,9 @@ class TransactionManager extends AbstractController
         $user = $this->getUser();
         $newTotalAccount = $user->getAccount() - $amount;
         $user->setAccount($newTotalAccount);
-        $this->em->persist($user);
-        $this->em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
     }
 
     public function credit($booking) {
@@ -63,8 +64,8 @@ class TransactionManager extends AbstractController
         $amount = $transaction->getAmount();
         $newTotalAccount = $user->getAccount() + $amount;
         $user->setAccount($newTotalAccount);
-        $this->em->persist($user, $transaction);
-        $this->em->flush();
+        $em->persist($user, $transaction);
+        $em->flush();
     }
 
     public function canceled($booking, $bookingState) {
@@ -73,13 +74,13 @@ class TransactionManager extends AbstractController
         $amount = $transaction->getAmount();
         $newTotalAccount = $userSender->getAccount() + $amount;
         $userSender->setAccount($newTotalAccount);
-        $this->em->persist($userSender);
+        $em = $this->em->persist($userSender);
 
         if ($bookingState->getLabel() == 'Accepted') {
             $userReceiver = $booking->getTransaction()->getUserReceiver();
             $newTotalAccount = $userReceiver->getAccount() - $amount;
             $userReceiver->setAccount($newTotalAccount);
-            $this->em->persist($userReceiver);
+            $em->persist($userReceiver);
         }
         $em->flush();
     }

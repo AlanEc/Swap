@@ -26,9 +26,7 @@
                     <label>Choisissez vos dates : </label>
                     <input type="text" name="daterange"  class="form-control form-control" required="required" />
                     {{ form_row(form.date_start, { 'attr': { 'class' : 'form-control' }} ) }}
-                    {{ form_errors(form.date_start) }}
                     {{ form_row(form.date_end, { 'attr': { 'class' : 'form-control' }} ) }}
-                    {{ form_errors(form.date_end) }}
                     {{ form_row(form.save, { 'label': 'Demande de réservation', 'attr': { 'class' : 'col-sm-offset-18 btn btn-primary ' }} ) }}
                     {{ form_rest(form, { 'attr': { 'class' : 'form-control' }} ) }}
                     {{ form_end(form, { 'attr': { 'class' : 'form-control' }} ) }}

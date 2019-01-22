@@ -61,6 +61,24 @@ class BookingManager extends AbstractController
         return $array;
     }
 
+    public function checkAlreadyBooked ($booking, $bookingsList) {
+        for ($i = 0; $i <= count($bookingsList); $i++) {
+            if ($booking->getDateStart() == $bookingsList[$i]->getDateStart() || $booking->getDateStart() == $bookingsList[$i]->getDateEnd()) {
+                return true;
+            } elseif ($booking->getDateEnd() == $bookingsList[$i]->getDateStart() || $booking->getDateEnd() == $bookingsList[$i]->getDateEnd()) {
+                return true;
+            } elseif ($booking->getDateStart() > $bookingsList[$i]->getDateStart() && $booking->getDateStart() < $bookingsList[$i]->getDateEnd()) {
+                return true;
+            } elseif ($booking->getDateEnd() > $bookingsList[$i]->getDateStart() && $booking->getDateEnd() < $bookingsList[$i]->getDateEnd()) {
+                return true;
+            } elseif ($booking->getDateStart() < $bookingsList[$i]->getDateStart() && $booking->getDateEnd() > $bookingsList[$i]->getDateEnd()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     public function getAcceptedState()
     {
         $repository = $this->getDoctrine()->getRepository(BookingState::class);

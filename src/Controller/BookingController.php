@@ -49,6 +49,11 @@ class BookingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $booking = $form->getData();
+            $checkAlreadyBooked = $this->bookingManager->checkAlreadyBooked($booking, $bookingsList);
+            if ($checkAlreadyBooked == true) {
+                $this->addFlash('error', 'Ces dates sont déjà prises !');
+                return $this->redirect($this->generateUrl('swap_booking_new', array('swapId' => $swapId)));
+            }
             $totalAmount = $this->transactionManager->calculTotalAmount($booking, $swap);
             $checkAccount = $this->transactionManager->checkAccount($totalAmount);
             if ($checkAccount == true ) {
