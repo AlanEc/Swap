@@ -111,7 +111,7 @@ class BookingController extends AbstractController
         $em->persist($booking);
         $em->flush();
 
-        $this->addFlash('success', 'Swap validé !');
+        $this->addFlash('success', 'Swap refusé !');
         return $this->redirectToRoute('app_account');
     }
 }

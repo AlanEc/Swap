@@ -17,7 +17,7 @@ class AccountController extends AbstractController
         $user = $this->getUser(); 
         $date = new \Datetime();
         
-        return $this->render('core/dashboard.html.twig', [
+        return $this->render('core/dashboard/dashboard.html.twig', [
         'controller_name' => 'AccountController',
         'user' => $user,
         'bookingsDone' => $user->getBookings(),

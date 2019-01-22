@@ -6,6 +6,12 @@
     height: 30px !important;
 }
 
+.modal-dialog {
+    transform: translate(0, -50%);
+    top: 30%;
+    margin: 0 auto;
+}
+
 /* */
 .containerRegister, .containerLogin {
     margin-top: 80px;
@@ -82,10 +88,6 @@ img {
 
 .navbar-header a.navbar-brand, #icon a, li.separation{
     color: #119f18;
-}
-
-li.separation {
-    margin-top: 13px;
 }
 
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {

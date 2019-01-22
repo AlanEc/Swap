@@ -2,6 +2,12 @@
     margin-top: 75px;
 }
 
+#empty {
+    height: 50px;
+    margin-top: 25px;
+    color: red;
+}
+
 /*deleteSwap*/
 #deleteSwap {
     margin-top: 100px;

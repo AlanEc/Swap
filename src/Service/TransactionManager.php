@@ -74,7 +74,8 @@ class TransactionManager extends AbstractController
         $amount = $transaction->getAmount();
         $newTotalAccount = $userSender->getAccount() + $amount;
         $userSender->setAccount($newTotalAccount);
-        $em = $this->em->persist($userSender);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($userSender);
 
         if ($bookingState->getLabel() == 'Accepted') {
             $userReceiver = $booking->getTransaction()->getUserReceiver();

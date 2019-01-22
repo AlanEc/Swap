@@ -1,0 +1,63 @@
+<div id="panelClickable" class="panel panel-info shadow account">
+    <div class="panel-heading">
+        <span class="titreCompte"><p>{{ 'core.dashboard.block_request_sent.title'|trans }} <span class="badge"></span></p><span>
+        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
+    </div>
+    <div id="panelClickableBody" class="panel-body">
+        <table>
+            <thead>
+                <tr>
+                    <td>Statut</td>
+                    <td>Date/Service</td>
+                    <td>Membre</td>
+                    <td>Total SwapPoints</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            {% for bookingDone in bookingsDone %}
+                {% if bookingDone.bookingState.label == 'Waiting' %}
+                    <tbody>
+                        <tr>
+                            <td> {{ bookingDone.bookingState.label }} </td>
+                            <td>
+                                </br>
+                                Du : {{ bookingDone.dateStart|date('d-m-Y') }} </br>
+                                Au : {{ bookingDone.dateStart|date('d-m-Y') }}
+                            </td>
+                            <td>
+                                {{ bookingDone.swapService.user.lastName }} {{ bookingDone.swapService.user.lastName }}
+                            </td>
+                            <td>{{ bookingDone.transaction.amount }}</td>
+                            <td>
+                                <!-- Button trigger modal -->
+                                <button class="btn btn-danger raleway400 text-center col-xs-94 col-xs-offset-1" data-toggle="modal" data-target="#modalRequestSent"><span class="glyphicon glyphicon-remove"></span></button>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalRequestSent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Etes-vous sûr de vouloir refuser ce service ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <a href="{{ path('swap_booking_canceled', {'bookingId': bookingDone.id })}}">
+                                                    <button class="btn btn-danger raleway400 text-center col-xs-94 col-xs-offset-1"><span class="glyphicon glyphicon-remove"></span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</div>

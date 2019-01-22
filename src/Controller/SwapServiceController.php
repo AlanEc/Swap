@@ -117,4 +117,12 @@ class SwapServiceController extends AbstractController
     {
         return $this->render('core/swapService/booking.html.twig');
     }
+
+    /**
+     * @Route("/swap/delete/{id}", name="swap_delete")
+     */
+    public function delete(Request $request)
+    {
+        return $this->render('core/swapService/booking.html.twig');
+    }
 }
