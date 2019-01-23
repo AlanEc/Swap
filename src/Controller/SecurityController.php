@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Form\RegisterFormType;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,32 +44,36 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
-        if ($request->isMethod('POST')) {
+
             $user = new User();
-            $user->setEmail($request->request->get('email'));
-            $user->setFirstName($request->request->get('firstName'));
-            $user->setLastName($request->request->get('lastName'));
-            $user->setAccount(0);
-            $user->setDisabled(0);
-            $user->setPhone(0);
-            $user->setCreatedAt(new \DateTime());
-            $user->setUpdatedAt(new \DateTime());
-            $user->setPassword($passwordEncoder->encodePassword(
-                $user,
-                $request->request->get('password')
-            ));
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $form = $this->createForm(RegisterFormType::class);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $user  = $form->getData();
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $formAuthenticator,
-                'main'
-            );
-        }
+                $user->setAccount(0);
+                $user->setDisabled(0);
+                $user->setPhone(0);
+                $user->setCreatedAt(new \DateTime());
+                $user->setUpdatedAt(new \DateTime());
+                $user->setPassword($passwordEncoder->encodePassword(
+                    $user,
+                    $user->getPassword()
+                ));
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
 
-        return $this->render('security/register.html.twig');
+                return $guardHandler->authenticateUserAndHandleSuccess(
+                    $user,
+                    $request,
+                    $formAuthenticator,
+                    'main'
+                );
+            }
+
+        return $this->render('security/register.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }

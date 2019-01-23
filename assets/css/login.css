@@ -3,6 +3,10 @@
     margin-bottom: 20px;
 }
 
+legend {
+    display: none !important;
+}
+
 .form-signin {
     max-width: 420px;
     padding: 30px 38px 66px;

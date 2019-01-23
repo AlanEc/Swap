@@ -62,19 +62,23 @@ class BookingManager extends AbstractController
     }
 
     public function checkAlreadyBooked ($booking, $bookingsList) {
-        for ($i = 0; $i <= count($bookingsList); $i++) {
-            if ($booking->getDateStart() == $bookingsList[$i]->getDateStart() || $booking->getDateStart() == $bookingsList[$i]->getDateEnd()) {
-                return true;
-            } elseif ($booking->getDateEnd() == $bookingsList[$i]->getDateStart() || $booking->getDateEnd() == $bookingsList[$i]->getDateEnd()) {
-                return true;
-            } elseif ($booking->getDateStart() > $bookingsList[$i]->getDateStart() && $booking->getDateStart() < $bookingsList[$i]->getDateEnd()) {
-                return true;
-            } elseif ($booking->getDateEnd() > $bookingsList[$i]->getDateStart() && $booking->getDateEnd() < $bookingsList[$i]->getDateEnd()) {
-                return true;
-            } elseif ($booking->getDateStart() < $bookingsList[$i]->getDateStart() && $booking->getDateEnd() > $bookingsList[$i]->getDateEnd()) {
-                return true;
-            } else {
-                return false;
+        if (count($bookingsList) != 0) {
+            for ($i = 0; $i <= count($bookingsList); $i++) {
+                if ($booking->getDateStart() == $bookingsList[$i]->getDateStart() || $booking->getDateStart() == $bookingsList[$i]->getDateEnd()) {
+                    return true;
+                } elseif ($booking->getDateEnd() == $bookingsList[$i]->getDateStart() || $booking->getDateEnd() == $bookingsList[$i]->getDateEnd()) {
+                    return true;
+                } elseif ($booking->getDateStart() > $bookingsList[$i]->getDateStart() && $booking->getDateStart() < $bookingsList[$i]->getDateEnd()) {
+                    return true;
+                } elseif ($booking->getDateEnd() > $bookingsList[$i]->getDateStart() && $booking->getDateEnd() < $bookingsList[$i]->getDateEnd()) {
+                    return true;
+                } elseif ($booking->getDateStart() < $bookingsList[$i]->getDateStart() && $booking->getDateEnd() > $bookingsList[$i]->getDateEnd()) {
+                    return true;
+                } elseif ($booking->getDateEnd() == $booking->getDateStart()) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
     }

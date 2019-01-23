@@ -119,10 +119,18 @@ class SwapServiceController extends AbstractController
     }
 
     /**
-     * @Route("/swap/delete/{id}", name="swap_delete")
+     * @Route("/swap/delete/{serviceId}", name="swap_delete")
      */
-    public function delete(Request $request)
+    public function delete(Request $request, $serviceId)
     {
-        return $this->render('core/swapService/booking.html.twig');
+        $repository = $this->getDoctrine()->getRepository(SwapService::class);
+        $swapService = $repository->findOneBy(['id' => $serviceId]);
+        $swapService->setDisabled(0);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($swapService);
+        $em->flush();
+
+        $this->addFlash('success', 'Swap Service Supprimé');
+        return $this->redirectToRoute('swap_user');
     }
 }

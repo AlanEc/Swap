@@ -27,6 +27,7 @@
                     <input type="text" name="daterange"  class="form-control form-control" required="required" />
                     {{ form_row(form.date_start, { 'attr': { 'class' : 'form-control' }} ) }}
                     {{ form_row(form.date_end, { 'attr': { 'class' : 'form-control' }} ) }}
+                    <div id="total">Nombre de SwapPoints:&nbsp; <div id="nbrSwaps">0</div></div>
                     {{ form_row(form.save, { 'label': 'Demande de réservation', 'attr': { 'class' : 'col-sm-offset-18 btn btn-primary ' }} ) }}
                     {{ form_rest(form, { 'attr': { 'class' : 'form-control' }} ) }}
                     {{ form_end(form, { 'attr': { 'class' : 'form-control' }} ) }}
@@ -35,8 +36,8 @@
         </div>
     </div>
     </div>
-    <div class="js-user-rating" data-is-authenticated="{{ dateBooked }}">
-    </div>
+    <div class="js-user-rating" data-is-authenticated="{{ dateBooked }}"></div>
+    <div class="amount" data-is-authenticated="{{ amount }}"></div>
 {% endblock %}
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -47,7 +48,11 @@
         var dateBooked = document.querySelector('.js-user-rating');
         var dateBooked = dateBooked.dataset.isAuthenticated;
         var jsonDecodeArray = JSON.parse(dateBooked);
-        console.log(jsonDecodeArray);
+
+        var amount = document.querySelector('.amount');
+        var amount = amount.dataset.isAuthenticated;
+        var jsonDecodeAmount = JSON.parse(amount);
+
         $('input[name="daterange"]').daterangepicker({
             "locale": {
                 "format": "DD/MM/YYYY",
@@ -107,6 +112,22 @@
 
             document.getElementById("booking_form_date_start").value = moment(startDate).format('YYYY-MM-DD');
             document.getElementById("booking_form_date_end").value = moment(endDate).format('YYYY-MM-DD');;
+            var tmp = endDate - startDate;
+            var diff = {};
+            tmp = Math.floor(tmp/1000);             // Nombre de secondes entre les 2 dates
+            diff.sec = tmp % 60;                    // Extraction du nombre de secondes
+
+            tmp = Math.floor((tmp-diff.sec)/60);    // Nombre de minutes (partie entière)
+            diff.min = tmp % 60;                    // Extraction du nombre de minutes
+
+            tmp = Math.floor((tmp-diff.min)/60);    // Nombre d'heures (entières)
+            diff.hour = tmp % 24;                   // Extraction du nombre d'heures
+
+            tmp = Math.floor((tmp-diff.hour)/24);   // Nombre de jours restants
+            diff.day = tmp;
+
+            var totalAmount = diff.day * jsonDecodeAmount;
+            $('#nbrSwaps').text('       ' +  totalAmount);
         });
     </script>
 {% endblock %}

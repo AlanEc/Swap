@@ -5,6 +5,10 @@
     position: fixed !important;
 }
 
+footer {
+   display: none;
+}
+
 #mapContainer {
     display: flex;
     justify-content: flex-end;

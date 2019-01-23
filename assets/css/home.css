@@ -1,9 +1,13 @@
 .containerHomePage {
-    margin-top: 1000px;
+    margin-top: 900px;
 }
 
 .icone {
     font-size: 255%;
+}
+
+img {
+    width: 100%;
 }
 
 .titleArticle {

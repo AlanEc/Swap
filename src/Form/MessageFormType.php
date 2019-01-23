@@ -21,7 +21,7 @@ class MessageFormType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, array(
-                'label' => false
+                'label' => false,
             ))
             ->add('save', SubmitType::class, array(
                 'label' => 'Envoyer'

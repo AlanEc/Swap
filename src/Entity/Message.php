@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
@@ -35,6 +36,11 @@ class Message
     private $date_send;
 
     /**
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Votre message doit faire au moins {{ limit }} characters"
+     * )
      * @ORM\Column(type="string", length=500)
      */
     private $content;

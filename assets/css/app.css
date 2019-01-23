@@ -1,4 +1,16 @@
 /*navBar */
+footer {
+    background-color: #44A1B8;
+    color: white;
+    margin-top: 50px;
+
+}
+
+.footer-copyright {
+    background-color: #1A78C2 ;
+    height: 50px;
+    padding-top: 15px;
+}
 
 #pac-input {
     margin-top: 11px;

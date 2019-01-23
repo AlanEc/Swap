@@ -30,6 +30,8 @@ class SwapServiceRepository extends ServiceEntityRepository
             ->andWhere('m.latitude BETWEEN :swlat AND :nelat')
             ->setParameter('swlat', $coord['swlat'])
             ->setParameter('nelat', $coord['nelat'])
+            ->andWhere('m.disabled = :disabled')
+            ->setParameter('disabled', 1)
         ;
 
         return $qb

@@ -8,6 +8,7 @@
     color: red;
 }
 
+
 /*deleteSwap*/
 #deleteSwap {
     margin-top: 100px;
@@ -334,4 +335,10 @@ label {
 
 #service_details_city, #service_details_country {
     visibility: hidden;
+}
+
+@media screen and (max-width: 640px) {
+    footer {
+        position: initial;
+    }
 }

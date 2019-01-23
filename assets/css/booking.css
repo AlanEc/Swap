@@ -6,6 +6,13 @@
     visibility: hidden;
 }
 
+#total {
+    display: flex;
+    color: #E12902;
+    font-size: 25px;
+    margin-right: 50px;
+    justify-content: right;
+}
 
 
 /*Old Css */
