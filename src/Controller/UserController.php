@@ -10,34 +10,45 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Request;
-use App\Form\UserFormType;
+use App\Form\ImageFormType;
+use App\Entity\Image;
 use App\Service\FileUploader;
 use App\Service\ImageOptimizer;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class UserController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("/profile", name="app_profile")
      */
     public function index(ObjectManager $em, Request $request, UserPasswordEncoderInterface $passwordEncoder, ImageOptimizer $imageOptimizer, FileUploader $fileUploader)
     {
         $user = $this->getUser();
-        $form = $this->createForm(UserFormType::class, $user);
+        $image = new Image();
+        $form = $this->createForm(ImageFormType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $file = $data->getImage();
-            if ($file !== null) {
-                $fileName = $fileUploader->upload($file);
+
+            if ($data !== null) {
+                $data->upload();
+                $fileName = $data->getImage();
                 $resize =  $imageOptimizer->resize($fileName);
             }
-            $data->setImage($fileName);;
+            $image1 = new Image();
+            $image1->setImage($data->getImage());
+
+            $em->persist($data);
+            $user->setImage($image1);
             $em->persist($user);
             $em->flush();
 
             $this->addFlash('success', 'User updated!');
+            return $this->redirectToRoute('app_account');
         }
 
         return $this->render('core/user/profile.html.twig', [

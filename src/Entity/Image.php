@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
@@ -20,8 +22,8 @@ class Image
     private $id;
 
     /**
+     *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
-     * @Assert\File(mimeTypes={ "application/image" })
      */
     private $image;
 
@@ -32,12 +34,29 @@ class Image
     private $user;
 
     /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updated_at;
+
+    /**
      * @var
-     * @Assert\Image()
+     * @Assert\Image(
+     *     minWidth = 500,
+     *     minHeight = 500,
+     * )
      */
     private $file;
 
-    const PATH = 'public/build/images';
+    const PATH = 'public/uploads/pictures';
+
+    public function upload()
+    {
+        $name = md5(uniqid()).'.'.$this->file->getClientOriginalName();
+        $this->file->move(self::PATH, $name);
+        $this->image = $name;
+        return;
+    }
 
     /**
      * Get id
@@ -47,6 +66,16 @@ class Image
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
     }
 
     /**

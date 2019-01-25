@@ -12,7 +12,7 @@ function readURL(input) {
     }
 }
 
-$("#user_form_image").change(function(){
+$("#image_form_file").change(function(){
     console.log('coucou');
     readURL(this);
 });

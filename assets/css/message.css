@@ -213,6 +213,21 @@ body {
     box-shadow:  8px 8px 12px #aaa !important;
 }
 
+.name, .content {
+    padding-top: 30px;
+}
+
+.row {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
 /*Caroussel*/
 
 .flexslider ul {
@@ -235,10 +250,6 @@ nav.navbar.navbar-inverse {
 nav.navbar.navbar-inverse {
     background-color: rgba(255,255,255);
     border-color: rgba(255,255,255,0.9);
-}
-
-.separation {
-    padding-top: 13px;
 }
 
 a {

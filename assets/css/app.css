@@ -6,6 +6,14 @@ footer {
 
 }
 
+footer a {
+    color: white !important;
+}
+
+li.separation {
+    margin-top: 13px;
+}
+
 .footer-copyright {
     background-color: #1A78C2 ;
     height: 50px;
@@ -152,7 +160,11 @@ li.separation {
 
 }
 
-
+@media screen and (max-width: 1280px) {
+    #silhouette, .panel-body.shadow.account {
+        display: none;
+    }
+}
 
 
 

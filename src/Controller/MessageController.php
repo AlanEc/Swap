@@ -18,10 +18,12 @@ use App\Entity\SwapService;
 use App\Entity\User;
 use App\Service\MessageManager;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class MessageController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("/mailbox", name="app_message_mailBox")
      */
     public function mailBox()
@@ -38,25 +40,22 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/message/{serviceId}", name="app_message_send")
+     * @Route("/message/{serviceId}/{receiverId}", name="app_message_send")
      */
-    public function send(Request $request, $serviceId, MessageManager $messageManager)
+    public function send(Request $request, $serviceId, $receiverId, MessageManager $messageManager)
     {
         $form = $this->createForm(MessageFormType::class);
         $form->handleRequest($request);
 
         $user = $this->getUser();
-
         $repository = $this->getDoctrine()->getRepository(SwapService::class);
         $service = $repository->findOneBy(array('id' => $serviceId));
         $repository = $this->getDoctrine()->getRepository(User::class);
-        $userReceiver = $repository->findOneBy(array('id' => $service->getUser()));
+        $userReceiver = $repository->findOneBy(array('id' => $receiverId));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $message  = $form->getData();
             $message->setUserSender($user);
-            $message->setServiceId(756);
             $message->setServiceId($serviceId);
             $message->setUserReceiver($userReceiver);
             $em = $this->getDoctrine()->getManager();
@@ -66,7 +65,7 @@ class MessageController extends AbstractController
 
         $messages = $this->getDoctrine()
             ->getRepository(Message::class)
-            ->conversationRecovery($serviceId, $user->getId());
+            ->conversationRecovery($serviceId, $user->getId(), $receiverId);
 
         return $this->render('core/Message/conversation.html.twig', array(
             'listMessage' => $messages,
@@ -78,7 +77,6 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("/message/{id}", name="app_message_read")
      */
     public function read($id)

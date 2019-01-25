@@ -27,7 +27,9 @@ class SwapServiceFormType extends AbstractType
                         '7' => '7',
                         '8' => '8' ))
             )
-            ->add('adress_1', TextType::class)
+            ->add('adress_1', TextType::class, array(
+                'label' => 'Adresse'
+            ))
             ->add('country', TextType::class, array(
                 'label' => false
             ))
@@ -46,7 +48,9 @@ class SwapServiceFormType extends AbstractType
             ->add('latitude', TextType::class, array(
                 'label' => false
             ))
-            ->add('save', SubmitType::class);
+            ->add('save', SubmitType::class, array(
+                'label' => 'Confirmer'
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

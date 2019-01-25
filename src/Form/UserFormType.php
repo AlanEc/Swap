@@ -23,10 +23,9 @@ class UserFormType extends AbstractType
             ->add('last_name')
             ->add('first_name')
             ->add('password')
-            ->add('image', FileType::class, array(
+            ->add('image', ImageFormType::class, array(
                 'label' => false,
                 'required' => false,
-                'data_class' => null
             ))
         ;
     }

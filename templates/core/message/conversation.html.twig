@@ -8,26 +8,16 @@
 {% block body %}
     <div class="containerMessage">
     <div class="row">
-        <div class="col-md-3 col-md-offset-1">
-            <div class="panel-body shadow Compte">
-                {% if user.image == null %}
-                    <img class="img-responsive img-circle img-responsive" id="silouhetteConversation" src="{{ asset('build/static/silhouette.png') }}">
-                {% else %}
-                    <img class="img-responsive img-circle img-responsive" id="silouhetteConversation" src="{{asset('public/uploads/pictures/optimized/' ~ user.image) }}">
-                {% endif %}
+    <!--    <div class="col-md-3 col-md-offset-1">
+           <div class="panel-body shadow Compte">
                 {% if service.user.id == userId %}
-                    <div class="namePorfilConversation">{{ service.user.username }}</div>
+                    <div class="namePorfilConversation">{{ service.user.firstName }} {{ service.user.lastName }}</div>
                 {% else %}
-                    <div class="namePorfilConversation"></div>
+                    <div class="namePorfilConversation">{{ user.firstName }} {{ user.lastName }}</div>
                 {% endif %}
-                <div id="bookingSummary">
-                    <p>Type de demande : </p>
-                    <p>Dates :  </p>
-                    <p>Nombre de personnes : </p>
-                </div>
             </div>
-        </div>
-        <div id="conversation-message" class="col-md-offset-1 col-md-6">
+        </div> -->
+        <div id="conversation-message" class="col-md-offset-2 col-md-8">
             <div id="bloc-message-conversation" class="panel-body shadow Compte">
                 {{ form_start(form) }}
                 {{ form_errors(form, { 'attr': { 'class' : 'form-control' }} ) }}
@@ -51,13 +41,21 @@
                             </svg>
                         </div>
                         <div id="silhouette" class="col-xs-1">
-                            <img class="img-responsive img-circle" src="{{asset('build/static/silhouette.png') }}"  />
+                            {% if message.userSender.image.image == null %}
+                                <img class="img-responsive img-circle img-responsive" src="{{ asset('build/static/silhouette.png') }}">
+                            {% else %}
+                                <img class="img-responsive img-circle img-responsive"  src="{{asset('public/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
+                            {% endif %}
                         </div>
                     </div>
                 {% else %}
                     <div class="row">
                         <div id="silhouette" class="col-xs-1">
-                            <img class="img-responsive img-circle" src="{{asset('build/static/silhouette.png') }}"  />
+                            {% if message.userSender.image.image == null %}
+                                <img class="img-responsive img-circle img-responsive" src="{{ asset('build/static/silhouette.png') }}">
+                            {% else %}
+                                <img class="img-responsive img-circle img-responsive"  src="{{asset('public/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
+                            {% endif %}
                         </div>
                         <div id="polygon" class="col-xs-1">
                             <svg width="100%" height="30" viewBox="0 0 100 100" preserveAspectRatio="none">

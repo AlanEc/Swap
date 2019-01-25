@@ -23,14 +23,18 @@
 						<div class="row">
 							<div class="col-md-offset-1 col-md-10 ">
 								<div>
-									<a href="{{ path('app_message_send', { 'serviceId': message.serviceId }) }}">
+									<a href="{{ path('app_message_send', { 'serviceId': message.serviceId, 'receiverId': message.userReceiver.id }) }}">
 									<div id="silhouette" class="col-xs-1">
-										<img class="img-responsive img-circle" src="{{asset('build/static/silhouette.png') }}"  />
+										{% if message.userReceiver.image.image == null %}
+											<img class="img-responsive img-circle img-responsive" src="{{ asset('build/static/silhouette.png') }}">
+										{% else %}
+											<img class="img-responsive img-circle img-responsive"  src="{{asset('public/uploads/pictures/optimized/' ~ message.userReceiver.image.image) }}">
+										{% endif %}
 									</div>
-									<div class="col-md-offset-1 col-md-2 ">
+									<div class="col-md-offset-1 col-md-2 name">
 										{{  message.userReceiver.firstName }}
 									</div>
-									<div class="col-md-2 ">
+									<div class="col-md-2 content">
 										{{ message.content }}
 									</div>
 									</a>
@@ -40,15 +44,19 @@
 							<div class="row">
 							<div class="col-md-offset-1 col-md-10 ">
 								<div>
-									<a href="{{ path('app_message_send', { 'serviceId': message.serviceId }) }}">
+									<a href="{{ path('app_message_send', { 'serviceId': message.serviceId, 'receiverId': message.userSender.id }) }}">
 										<div id="silhouette" class="col-xs-1">
-											<img class="img-responsive img-circle" src="{{asset('build/static/silhouette.png') }}"  />
+											{% if message.userSender.image.image == null %}
+											<img class="img-responsive img-circle img-responsive" src="{{ asset('build/static/silhouette.png') }}">
+											{% else %}
+												<img class="img-responsive img-circle img-responsive"  src="{{asset('public/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
+											{% endif %}
 										</div>
 
-										<div class="col-md-offset-1 col-md-2 ">
+										<div class="col-md-offset-1 col-md-2 name">
 										{{ message.userSender.firstName }}
 										</div>
-										<div class="col-md-2 ">
+										<div class="col-md-2 content">
 										{{ message.content }}
 										</div>
 									</a>

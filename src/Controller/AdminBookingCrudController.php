@@ -9,7 +9,7 @@ use App\Repository\MessageRepository;
 use App\Entity\User;
 use App\Form\CrudUserType;
 use App\Repository\UserRepository;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\Booking;
 use App\Form\CrudBookingType;
 use App\Repository\BookingRepository;
@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin")
+ * @IsGranted("ROLE_ADMIN")
  */
 class AdminBookingCrudController extends AbstractController
 {

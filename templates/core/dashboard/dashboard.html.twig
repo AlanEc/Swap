@@ -11,12 +11,12 @@
                     {% if user.image == null %}
                         <img class="img-responsive" src="{{asset('build/static/silhouette.png') }}">
                     {% else %}
-                        <img class="img-responsive" src="{{asset('public/uploads/pictures/optimized/' ~ user.image) }}">
+                        <img class="img-responsive" src="{{asset('public/uploads/pictures/optimized/' ~ user.image.image) }}">
                     {% endif %}
                     <p>{{ user.firstName }} {{ user.lastName }}</p>
                     <p>SwapBank : {{ user.account }}</p>
                     <a href="{{ path('app_profile')}}">
-                        <button id="boutonProfil" class="btn btn-primary text-center col-md-12">{{ 'core.dashboard.block_profil.btn_profil'|trans }}</button>
+                        <button id="boutonProfil" class="btn btn-primary text-center col-md-12">Uploader une image</button>
                     </a>
                 </div>
             </div>
@@ -28,7 +28,7 @@
             <a href="{{ path('swap_create')}}">
                 <button type="button" class="btn btn-success btn-lg col-xs-offset-1 col-xs-4">{{ 'core.dashboard.btn_add_swap'|trans }} <span class="glyphicon glyphicon-plus"></span></button>
             </a>
-            <a href="{{ path('app_profile')}}">
+            <a href="{{ path('app_message_mailBox')}}">
                 <button type="button" class="btn btn-primary btn-lg col-xs-offset-1 col-xs-3">{{ 'core.dashboard.btn_messages'|trans }} <span class="glyphicon glyphicon-envelope"></span></button>
             </a>
         </div>

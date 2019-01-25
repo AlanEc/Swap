@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -100,9 +101,10 @@ class User implements UserInterface
     private $transactions;
 
     /**
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
-     * @Assert\File(maxSize="600000000")
      *
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", inversedBy="user", cascade={"persist"})
+     * @Assert\Valid()
+     * @ORM\JoinColumn(nullable=true)
      */
     private $image;
 
@@ -437,9 +439,9 @@ class User implements UserInterface
         return $this->image;
     }
 
-    public function setImage($image)
+    public function setImage($file)
     {
-        $this->image = $image;
+        $this->image = $file;
 
         return $this;
     }

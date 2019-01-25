@@ -21,6 +21,10 @@ use App\Form\BookingFormType;
 use App\Service\BookingManager;
 use App\Service\TransactionManager;
 
+
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class BookingController extends AbstractController
 {
     protected $bookingManager;
@@ -33,7 +37,6 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("search/booking/new/{swapId}", name="swap_booking_new")
      */
     public function new(Request $request, $swapId)
@@ -70,12 +73,12 @@ class BookingController extends AbstractController
             'form' => $form->createView(),
             'dateBooked' => json_encode($array),
             'swapId' => $swapId,
+            'swap' => $swap,
             'amount' => json_encode($swap->getSwapServiceType()->getValueScale()),
         ]);
     }
 
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("search/booking/accepted/{bookingId}", name="swap_booking_accepted")
      */
     public function accepted(Request $request, $bookingId)
@@ -94,7 +97,6 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("search/booking/canceled/{bookingId}", name="swap_booking_canceled")
      */
     public function canceled(Request $request, $bookingId){

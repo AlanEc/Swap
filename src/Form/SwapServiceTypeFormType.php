@@ -15,9 +15,10 @@ class SwapServiceTypeFormType extends AbstractType
         $builder
             ->add('label', ChoiceType::class, array(
                     'choices' => array(
-                    'Hebergement' => 'Hebergement',
-                    'Repas' => 'Repas'))
+                    'Hebergement' => 'Hebergement'))
             )
-            ->add('save', SubmitType::class);
+            ->add('save', SubmitType::class, array(
+                'label' => 'Valider'
+            ));
     }
 }

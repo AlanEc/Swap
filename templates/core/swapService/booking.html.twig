@@ -11,9 +11,14 @@
         <div class="row">
             <div class="col-md-3 col-md-offset-1">
                 <div class="panel-body shadow Compte">
-                    <img class="img-responsive" src="{{asset('build/static/silhouette.png') }}">
+                    {% if swap.user.image.image == null %}
+                        <img class="img-responsive" src="{{asset('build/static/silhouette.png') }}">
+                    {% else %}
+                        <img class="img-responsive" src="{{asset('public/uploads/pictures/optimized/' ~ swap.user.image.image) }}">
+                    {% endif %}
+                    <p>{{ swap.user.firstName }} {{ swap.user.lastName }}</p>
                     <a href="asset('build/static/silhouette.png')">
-                        <a id="btnSendMessage" href="{{ path('app_message_send', {'serviceId': swapId })}}" type="button" class="btn btn-primary text-center col-md-12">Envoyer un message</a>
+                        <a id="btnSendMessage" href="{{ path('app_message_send', {'serviceId': swapId, 'receiverId': swap.user.id })}}" type="button" class="btn btn-primary text-center col-md-12">Envoyer un message</a>
                     </a>
                 </div>
             </div>

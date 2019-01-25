@@ -20,10 +20,13 @@ use App\Form\SwapServiceTypeFormType;
 use App\Form\SwapServiceFormType;
 use App\Service\EntityFactory;
 
+
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class SwapServiceController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("/create", name="swap_create")
      */
     public function create(Request $request, EntityFactory $entityFactory)
@@ -102,7 +105,8 @@ class SwapServiceController extends AbstractController
             $swapsServicesArray[] = array('Latitude' => $swap->getLatitude(),
                 'Longitude' => $swap->getLongitude(),
                 'People_quantity' => $swap->getPeopleQuantity(),
-                'User' => $swap->getUser()->getUsername(),
+                'User' => $swap->getUser()->getFirstName(),
+                'Quantity' => $swap->getQuantity(),
                 'Id' => $swap->getId(),
                 'City' => $swap->getCity(),
                 'Category' => $swap->getSwapServiceType()->getLabel());

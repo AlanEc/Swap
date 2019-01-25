@@ -64,6 +64,7 @@ class TransactionManager extends AbstractController
         $amount = $transaction->getAmount();
         $newTotalAccount = $user->getAccount() + $amount;
         $user->setAccount($newTotalAccount);
+        $em = $this->getDoctrine()->getManager();
         $em->persist($user, $transaction);
         $em->flush();
     }
@@ -81,6 +82,7 @@ class TransactionManager extends AbstractController
             $userReceiver = $booking->getTransaction()->getUserReceiver();
             $newTotalAccount = $userReceiver->getAccount() - $amount;
             $userReceiver->setAccount($newTotalAccount);
+            $em = $this->getDoctrine()->getManager();
             $em->persist($userReceiver);
         }
         $em->flush();
