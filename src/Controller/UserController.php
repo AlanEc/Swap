@@ -26,8 +26,7 @@ class UserController extends AbstractController
     public function index(ObjectManager $em, Request $request, UserPasswordEncoderInterface $passwordEncoder, ImageOptimizer $imageOptimizer, FileUploader $fileUploader)
     {
         $user = $this->getUser();
-        $image = new Image();
-        $form = $this->createForm(ImageFormType::class, $image);
+        $form = $this->createForm(ImageFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,11 +38,11 @@ class UserController extends AbstractController
                 $fileName = $data->getImage();
                 $resize =  $imageOptimizer->resize($fileName);
             }
-            $image1 = new Image();
-            $image1->setImage($data->getImage());
-
-            $em->persist($data);
-            $user->setImage($image1);
+            $image = new Image();
+            $image->setImage($data->getImage());
+            //$user->setImage($file);
+            //$em->persist($data);
+            $user->setImage($image);
             $em->persist($user);
             $em->flush();
 

@@ -108,7 +108,7 @@ $(document).ready(function() {
                         $('#resultSearch').append('<div class="panel panel-default ' + i + ' "><div class="row">' +
                             '<div class= col-md-3 ">' + data[i]['User'] + '</div>' +
                             '<div class="col-md-5 ">' + data[i]['Category'] + '</br>' +
-                            '<p>Nombre de personne:' + data[i]['Quantity'] + '</p></div>' +
+                            '<p>Nombre de personne:' + data[i]['People_quantity'] + '</p></div>' +
                             '<div class="col-md-3 "><a href="booking/new/' +  data[i]['Id'] + '">Voir le Swap</a></div></div></div>');
                         //$('#resir le Swap</a></div></div><b>Nom</b> : ' + data[i]['Latitude'] + '</div>');
                         marker = new google.maps.Marker({

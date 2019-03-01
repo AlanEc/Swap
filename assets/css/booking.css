@@ -346,3 +346,27 @@ label {
 #service_details_city, #service_details_country {
     visibility: hidden;
 }
+
+#btnSendMessage {
+    color: white !important;
+}
+
+@media screen and (max-width: 1000px)
+{
+    .Compte {
+        margin: 0 auto;
+        margin-bottom: 0px;
+        width: 70%;
+        width: 70%;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    #btnSendMessage {
+        color :white !important;
+    }
+
+    .containerBooking {
+        min-height: 1150px !important;
+    }
+}

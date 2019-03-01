@@ -54,6 +54,7 @@ class SwapServiceController extends AbstractController
             $repository = $this->getDoctrine()->getRepository(SwapServiceType::class);
             $swapServiceType = $repository->findOneBy(['label' => $swapServiceType['label']]);
             $swapService->setSwapServiceType($swapServiceType);
+            $swapService->setDisabled(1);
             $entityFactory->persist($swapService);
             $em = $this->getDoctrine()->getManager();
             $em->flush();

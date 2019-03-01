@@ -3,6 +3,7 @@
 {% block title %}{{ parent() }} - Index{% endblock %}
 
 {% block stylesheets %}
+    <link href="{{ asset('build/profile.css') }}" rel="stylesheet" />
     <link href="{{ asset('build/message.css') }}" rel="stylesheet" />
 {% endblock %}
 {% block body %}
@@ -44,7 +45,7 @@
                             {% if message.userSender.image.image == null %}
                                 <img class="img-responsive img-circle img-responsive" src="{{ asset('build/static/silhouette.png') }}">
                             {% else %}
-                                <img class="img-responsive img-circle img-responsive"  src="{{asset('public/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
+                                <img class="img-responsive img-circle img-responsive"  src="{{asset('build/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
                             {% endif %}
                         </div>
                     </div>
@@ -54,7 +55,7 @@
                             {% if message.userSender.image.image == null %}
                                 <img class="img-responsive img-circle img-responsive" src="{{ asset('build/static/silhouette.png') }}">
                             {% else %}
-                                <img class="img-responsive img-circle img-responsive"  src="{{asset('public/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
+                                <img class="img-responsive img-circle img-responsive"  src="{{asset('build/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
                             {% endif %}
                         </div>
                         <div id="polygon" class="col-xs-1">

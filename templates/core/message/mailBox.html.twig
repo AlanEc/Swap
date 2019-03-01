@@ -2,6 +2,7 @@
 
 {% block title %}Search{% endblock %}
 {% block stylesheets %}
+    <link href="{{ asset('build/profile.css') }}" rel="stylesheet" />
     <link href="{{ asset('build/message.css') }}" rel="stylesheet" />
 {% endblock %}
 {% block body %}
@@ -25,10 +26,10 @@
 								<div>
 									<a href="{{ path('app_message_send', { 'serviceId': message.serviceId, 'receiverId': message.userReceiver.id }) }}">
 									<div id="silhouette" class="col-xs-1">
-										{% if message.userReceiver.image.image == null %}
+										{% if message.userReceiver.image == null %}
 											<img class="img-responsive img-circle img-responsive" src="{{ asset('build/static/silhouette.png') }}">
 										{% else %}
-											<img class="img-responsive img-circle img-responsive"  src="{{asset('public/uploads/pictures/optimized/' ~ message.userReceiver.image.image) }}">
+											<img class="img-responsive img-circle img-responsive"  src="{{asset('build/uploads/pictures/optimized/' ~ message.userReceiver.image.image) }}">
 										{% endif %}
 									</div>
 									<div class="col-md-offset-1 col-md-2 name">
@@ -46,10 +47,10 @@
 								<div>
 									<a href="{{ path('app_message_send', { 'serviceId': message.serviceId, 'receiverId': message.userSender.id }) }}">
 										<div id="silhouette" class="col-xs-1">
-											{% if message.userSender.image.image == null %}
+											{% if message.userSender.image == null %}
 											<img class="img-responsive img-circle img-responsive" src="{{ asset('build/static/silhouette.png') }}">
 											{% else %}
-												<img class="img-responsive img-circle img-responsive"  src="{{asset('public/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
+												<img class="img-responsive img-circle img-responsive"  src="{{asset('build/uploads/pictures/optimized/' ~ message.userSender.image.image) }}">
 											{% endif %}
 										</div>
 

@@ -15,7 +15,7 @@ class ImageOptimizer
     }
 
     public function resize($fileName) {
-        $dir = 'public/uploads/pictures/';
+        $dir = 'build/uploads/pictures/';
         \Tinify\setKey("YN-tD6vaVHxYTx8XcfBLKFrlzXwwxgLi");
         $source = \Tinify\fromFile($dir.$fileName);
         $resized = $source->resize(array(

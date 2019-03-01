@@ -48,7 +48,8 @@ class Image
      */
     private $file;
 
-    const PATH = 'public/uploads/pictures';
+    //const PATH = 'public/uploads/pictures';
+    const PATH = 'build/uploads/pictures';
 
     public function upload()
     {
@@ -73,7 +74,7 @@ class Image
         return $this->file;
     }
 
-    public function setFile(UploadedFile $file = null)
+    public function setFile(UploadedFile $file )
     {
         $this->file = $file;
     }

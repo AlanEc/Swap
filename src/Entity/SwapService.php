@@ -40,17 +40,17 @@ class SwapService
     private $longitude;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=250)
      */
     private $adress_1;
 
     /**
-     * @ORM\Column(type="string", length=45, nullable=true)
+     * @ORM\Column(type="string", length=250, nullable=true)
      */
     private $adress_2;
 
     /**
-     * @ORM\Column(type="string", length=45, nullable=true))
+     * @ORM\Column(type="string", length=250, nullable=true))
      */
     private $adress_3;
 

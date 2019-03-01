@@ -67,7 +67,7 @@ class MessageController extends AbstractController
             ->getRepository(Message::class)
             ->conversationRecovery($serviceId, $user->getId(), $receiverId);
 
-        return $this->render('core/Message/conversation.html.twig', array(
+        return $this->render('core/message/conversation.html.twig', array(
             'listMessage' => $messages,
             'service' => $service,
             'userId' => $user->getId(),

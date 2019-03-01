@@ -9,8 +9,8 @@ $(document).ready(function() {
         var locality = [];
 
         var place = autocomplete.getPlace();
-        document.getElementById('swap_service_form_longitude').value = place.geometry.location.lat();
-        document.getElementById('swap_service_form_latitude').value = place.geometry.location.lng();
+        document.getElementById('swap_service_form_longitude').value = place.geometry.location.lng();
+        document.getElementById('swap_service_form_latitude').value = place.geometry.location.lat();
 
         for (var i = 0; i < place.address_components.length; i++) {
             var addressType = place.address_components[i].types[0];

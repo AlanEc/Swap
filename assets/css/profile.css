@@ -2,12 +2,6 @@
     margin-top: 75px;
 }
 
-footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-}
-
 .ll {
     border: 2px solid black;
     height: 20px;
@@ -31,6 +25,12 @@ div.panel-body.shadow.Profile {
 
 .col-md-5 {
     margin-left: 4.16666667% !important;
+}
+
+@media screen and (max-width: 780px) {
+    .Profile {
+        margin-bottom: 50px;
+    }
 }
 
 

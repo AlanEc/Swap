@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CrudBookingType extends AbstractType
 {
@@ -24,6 +25,9 @@ class CrudBookingType extends AbstractType
                 'widget' => 'single_text',
             ))
             ->add('disabled')
+            ->add('save', SubmitType::class, array(
+                'label' => 'Modifier'
+            ));
         ;
     }
 

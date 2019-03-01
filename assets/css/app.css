@@ -6,6 +6,26 @@ footer {
 
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+a:hover {
+    color: #119f18 !important;
+}
+
+a {
+    color: #119f18 !important;
+}
+
 footer a {
     color: white !important;
 }
@@ -18,6 +38,18 @@ li.separation {
     background-color: #1A78C2 ;
     height: 50px;
     padding-top: 15px;
+}
+
+#blocConcept4 {
+    visibility: hidden;
+}
+
+#blocConcept2 {
+    display: none;
+}
+
+.containerBooking, #containerAmin, .formSwapServiceContainer, .mySwapsContainer, .containerMessage, #containerDashboard, .profileContainer, .containerLogin, .containerRegister {
+    min-height: 750px !important;
 }
 
 #pac-input {
@@ -160,13 +192,21 @@ li.separation {
 
 }
 
+
 @media screen and (max-width: 1280px) {
     #silhouette, .panel-body.shadow.account {
         display: none;
     }
+
+    #pac-input {
+        width: 45%;
+    }
 }
-
-
+@media screen and (max-width: 780px) {
+    #pac-input {
+        margin: auto;
+    }
+}
 
 
 
